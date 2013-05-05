@@ -1,0 +1,4 @@
+example
+=======
+
+Rails Application Example
