@@ -36,3 +36,29 @@ gem 'jbuilder', '~> 1.0.1'
 
 # To use debugger
 # gem 'debugger'
+
+gem "exception_notification", github: "smartinez87/exception_notification"
+gem "haml-rails"
+gem "simple_form"
+gem "kaminari"
+gem "factory_girl_rails"
+gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
+gem "sorcery"
+gem 'therubyracer'
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+gem "jquery-ui-rails"
+
+group :development do
+  gem "i18n_generators", git: "git://github.com/amatsuda/i18n_generators.git"
+  gem "better_errors"
+  gem 'binding_of_caller'
+  gem 'meta_request'
+end
+
+group :development, :test do
+  gem "rspec-rails"
+  gem "webrat"
+  gem "pry-rails"
+  gem 'spring'
+end
