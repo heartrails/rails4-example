@@ -1,0 +1,21 @@
+%h1 <%= plural_table_name %>
+
+%table.table
+  %tr
+<% for attribute in attributes -%>
+    %th <%= attribute.human_name %>
+<% end -%>
+    %th=t '.actions', :default => t("helpers.actions")
+
+  - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+    %tr
+<% for attribute in attributes -%>
+      %td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+      %td
+        = link_to t('.edit', :default => t("helpers.links.edit")), edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-mini'
+        = link_to t('.destroy', :default => t("helpers.links.destroy")), <%= singular_table_name %>_path(<%= singular_table_name %>), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+%br
+
+= link_to t('.new', :default => t("helpers.links.new")), new_<%= singular_table_name %>_path, :class => 'btn btn-primary'
