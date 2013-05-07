@@ -11,12 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130507052016) do
+ActiveRecord::Schema.define(version: 20130507112222) do
 
-  create_table "users", force: true do |t|
-    t.string   "name"
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "posts", force: true do |t|
+    t.integer  "user_id"
+    t.text     "text"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.string   "username"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

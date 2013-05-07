@@ -1,0 +1,21 @@
+%h1 posts
+
+%table.table
+  %tr
+    %th User
+    %th Text
+    %th Url
+    %th=t '.actions', :default => t("helpers.actions")
+
+  - @posts.each do |post|
+    %tr
+      %td= post.user
+      %td= post.text
+      %td= post.url
+      %td
+        = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(post), :class => 'btn btn-mini'
+        = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+%br
+
+= link_to t('.new', :default => t("helpers.links.new")), new_post_path, :class => 'btn btn-primary'
