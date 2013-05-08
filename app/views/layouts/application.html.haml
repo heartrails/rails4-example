@@ -32,7 +32,14 @@
               %li= link_to "新規投稿", new_post_path if can? :create, :posts
             %ul.nav.pull-right
               - if current_user
-                %li= link_to "ログアウト", sessions_path, method: :delete
+                %li.dropdown
+                  %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                    %i.icon-user.icon-white
+                    = current_user.username
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li= link_to 'マイページ', user_path(current_user)
+                    %li= link_to 'ログアウト', sessions_path, method: :delete
               - else
                 %li= link_to "登録", new_user_path
                 %li= link_to "ログイン", new_sessions_path
