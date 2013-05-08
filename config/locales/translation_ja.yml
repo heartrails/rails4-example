@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      comment: コメント  #g
+      post: 投稿  #g
+      user: ユーザー  #g
+
+    attributes:
+      comment:
+        body: 本文  #g
+        post: :activerecord.models.post  #g
+        user: :activerecord.models.user  #g
+
+      post:
+        comments: コメント  #g
+        text: 本文  #g
+        url: URL  #g
+        user: :activerecord.models.user  #g
+
+      user:
+        password_digest:
+        salt:
+        username: ユーザー名  #g
