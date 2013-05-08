@@ -26,7 +26,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -43,7 +43,6 @@ gem "simple_form"
 gem "kaminari"
 gem "factory_girl_rails"
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
-gem "sorcery"
 gem 'therubyracer'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
@@ -61,4 +60,5 @@ group :development, :test do
   gem "webrat"
   gem "pry-rails"
   gem 'spring'
+  gem 'faker'
 end
