@@ -105,7 +105,7 @@ describe PostsController do
   describe "PUT update" do
     subject(:action){ put :update, {id: @post.to_param, post: attributes}, valid_session }
     describe "with valid params" do
-      let(:attributes){ { "user" => "" } }
+      let(:attributes){ { "user_id" => "1" } }
       it "updates the requested post" do
         # Assuming there are no other posts in the database, this
         # specifies that the Post created on the previous line

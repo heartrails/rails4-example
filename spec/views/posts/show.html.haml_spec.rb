@@ -8,8 +8,8 @@ describe "posts/show" do
   it "renders attributes in <p>" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    expect(rendered).to match(//)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/Url/)
+    expect(rendered).to match(@post.user.username)
+    expect(rendered).to match(@post.text)
+    expect(rendered).to match(@post.url)
   end
 end

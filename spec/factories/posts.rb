@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :post do
-    user nil
-    text "MyText"
-    url "MyString"
+    user
+    text { Faker::Lorem.sentence(10) }
+    url { Faker::Internet.url }
   end
 end

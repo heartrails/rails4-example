@@ -1,12 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  # GET /comments
-  # GET /comments.json
-  def index
-    @comments = Comment.all
-  end
-
   # GET /comments/1
   # GET /comments/1.json
   def show
@@ -14,6 +8,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+    @post = Post.find(params[:post_id])
     @comment = Comment.new
   end
 
@@ -56,7 +51,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to post_comments_url(@comment.post) }
       format.json { head :no_content }
     end
   end

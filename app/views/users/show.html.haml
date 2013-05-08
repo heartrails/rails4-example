@@ -5,10 +5,6 @@
 %dl
   %dt Username
   %dd= @user.username
-  %dt Crypted password
-  %dd= @user.crypted_password
-  %dt Salt
-  %dd= @user.salt
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn'

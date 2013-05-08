@@ -3,7 +3,7 @@ require 'spec_helper'
 <% output_attributes = attributes.reject{|attribute| [:datetime, :timestamp, :time, :date].index(attribute.type) } -%>
 describe "<%= ns_table_name %>/index" do
   before(:each) do
-    assign(:<%= table_name %>, FactoryGirl.create_list(:<%= ns_file_name %>, 2))
+    @<%= ns_table_name %> = assign(:<%= table_name %>, FactoryGirl.create_list(:<%= ns_file_name %>, 2))
   end
 
   it "renders a list of <%= ns_table_name %>" do
@@ -15,7 +15,8 @@ describe "<%= ns_table_name %>/index" do
 <% if webrat? -%>
     expect(rendered).to have_selector("tr>td", :content => <%= value_for(attribute) %>.to_s, :count => 2)
 <% else -%>
-    assert_select "tr>td", :text => <%= value_for(attribute) %>.to_s, :count => 2
+    assert_select "tr>td", :text => @<%= ns_table_name %>[0].<%= attribute %>, :count => 1
+    assert_select "tr>td", :text => @<%= ns_table_name %>[1].<%= attribute %>, :count => 1
 <% end -%>
 <% end -%>
   end

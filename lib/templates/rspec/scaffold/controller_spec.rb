@@ -32,7 +32,7 @@ describe <%= controller_class_name %>Controller do
   let(:valid_session) { {} }
 
   before do
-    @<%= file_name %> = <%= class_name %>.create! valid_attributes
+    @<%= file_name %> = FactoryGirl.create(:<%= file_name %>)
   end
 
 <% unless options[:singleton] -%>

@@ -31,15 +31,8 @@ describe CommentsController do
   let(:valid_session) { {} }
 
   before do
-    @comment = Comment.create! valid_attributes
-  end
-
-  describe "GET index" do
-    subject(:action){ get :index, {}, valid_session }
-    it "assigns all comments as @comments" do
-      subject
-      expect(assigns(:comments)).to eq([@comment])
-    end
+    @comment = FactoryGirl.create(:comment)
+    @post = @comment.post
   end
 
   describe "GET show" do
@@ -51,7 +44,7 @@ describe CommentsController do
   end
 
   describe "GET new" do
-    subject(:action){ get :new, {}, valid_session }
+    subject(:action){ get :new, {post_id: @post.to_param}, valid_session }
     it "assigns a new comment as @comment" do
       subject
       expect(assigns(:comment)).to be_a_new(Comment)
@@ -67,7 +60,7 @@ describe CommentsController do
   end
 
   describe "POST create" do
-    subject(:action){ post :create, {comment: attributes}, valid_session }
+    subject(:action){ post :create, {post_id: @post.to_param, comment: attributes}, valid_session }
     describe "with valid params" do
       let(:attributes){ valid_attributes }
       it "creates a new Comment" do
@@ -105,7 +98,7 @@ describe CommentsController do
   describe "PUT update" do
     subject(:action){ put :update, {id: @comment.to_param, comment: attributes}, valid_session }
     describe "with valid params" do
-      let(:attributes){ { "user" => "" } }
+      let(:attributes){ { "user_id" => "1" } }
       it "updates the requested comment" do
         # Assuming there are no other comments in the database, this
         # specifies that the Comment created on the previous line
@@ -150,7 +143,7 @@ describe CommentsController do
     end
 
     it "redirects to the comments list" do
-      expect(subject).to redirect_to(comments_url)
+      expect(subject).to redirect_to(post_comments_url(@post.to_param))
     end
   end
 

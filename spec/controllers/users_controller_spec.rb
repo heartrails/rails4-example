@@ -31,15 +31,7 @@ describe UsersController do
   let(:valid_session) { {} }
 
   before do
-    @user = User.create! valid_attributes
-  end
-
-  describe "GET index" do
-    subject(:action){ get :index, {}, valid_session }
-    it "assigns all users as @users" do
-      subject
-      expect(assigns(:users)).to eq([@user])
-    end
+    @user = FactoryGirl.create(:user)
   end
 
   describe "GET show" do
@@ -76,6 +68,7 @@ describe UsersController do
 
       it "assigns a newly created user as @user" do
         subject
+        expect(assigns(:user).errors.messages).to eq({})
         expect(assigns(:user)).to be_a(User)
         expect(assigns(:user)).to be_persisted
       end
@@ -86,7 +79,7 @@ describe UsersController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "username" => "invalid value" } }
+      let(:attributes){ valid_attributes.merge(password_confirmation: "hogehoge") }
       it "assigns a newly created but unsaved user as @user" do
         # Trigger the behavior that occurs when invalid params are submitted
         User.any_instance.stub(:save).and_return(false)

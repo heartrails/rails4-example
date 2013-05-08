@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :user do
-    username "MyString"
-    crypted_password "MyString"
-    salt "MyString"
+    username { Faker::Internet.user_name }
+    password { 'abcdefghjkmnpqrtuvwxyzABCDEFGHJKLMNPQRTUVWXY346789+-*#$_'.chars.sample(8).join }
+    password_confirmation { password }
   end
 end

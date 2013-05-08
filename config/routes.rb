@@ -1,13 +1,13 @@
 Example::Application.routes.draw do
   root :to => 'posts#index'
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-  resources :comments
 
-  resources :posts
+  resources :posts, shallow: true do
+    resources :comments, except: :index
+  end
 
-  resources :users
+  resources :users, except: :index
+
+  resource :sessions, only:[:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -3,12 +3,8 @@ require "spec_helper"
 describe CommentsController do
   describe "routing" do
 
-    it "routes to #index" do
-      expect(get("/comments")).to route_to("comments#index")
-    end
-
     it "routes to #new" do
-      expect(get("/comments/new")).to route_to("comments#new")
+      expect(get("/posts/1/comments/new")).to route_to("comments#new", post_id: "1")
     end
 
     it "routes to #show" do
@@ -20,7 +16,7 @@ describe CommentsController do
     end
 
     it "routes to #create" do
-      expect(post("/comments")).to route_to("comments#create")
+      expect(post("/posts/1/comments")).to route_to("comments#create", post_id: "1")
     end
 
     it "routes to #update" do
