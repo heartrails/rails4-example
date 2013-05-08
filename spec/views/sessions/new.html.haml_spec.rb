@@ -2,11 +2,13 @@ require 'spec_helper'
 
 describe "sessions/new.html.haml" do
   before do
-    #assign(:sessions, FactoryGirl.build(sessions)
+    assign(:user, FactoryGirl.build(:user))
   end
   it do
     render
-    #expect(view).to render_template(partial: "_sessions")
-    #expect(rendered).to include("new")
+    assert_select "form[action=?][method=?]", sessions_path, "post" do
+      assert_select "input#user_username[name=?]", "user[username]"
+      assert_select "input#user_password[name=?]", "user[password]"
+    end
   end
 end

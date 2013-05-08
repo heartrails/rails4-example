@@ -1,2 +1,6 @@
-%h1 Sessions#new
-%p Find me in app/views/sessions/new.html.haml
+= simple_form_for @user, url: sessions_path, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :username
+  = f.input :password
+  .form-actions
+    = f.button :submit, "ログイン", :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'

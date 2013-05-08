@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "<%= file_name %>/<%= @action %>.html.<%= options[:template_engine] %>" do
   before do
-    #assign(:<%= file_name %>, FactoryGirl.build(<%= file_name %>)
+    #assign(:<%= file_name %>, FactoryGirl.build(:<%= file_name %>))
   end
   it do
     render
