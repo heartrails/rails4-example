@@ -1,4 +1,6 @@
-%h1 <%= plural_table_name %>
+- model_class = <%= class_name %>
+.page-header
+  %h1=t '.title', :default => [:'helpers.titles.index', 'Index of %{model}'], :model => model_class.model_name.human
 
 %table.table
   %tr

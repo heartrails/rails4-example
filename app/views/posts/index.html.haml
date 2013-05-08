@@ -1,8 +1,13 @@
-%h1 posts
+- model_class = Post
+.page-header
+  %h1=t '.title', :default => [:'helpers.titles.index', 'Index of %{model}'], :model => model_class.model_name.human
+
+= render "search_form"
 
 %table.table
   %tr
-    %th User
+    %th= User
+    %th= sort_link @q, :created_at, "投稿日時"
     %th Text
     %th Url
     %th=t '.actions', :default => t("helpers.actions")
@@ -10,7 +15,8 @@
   - @posts.each do |post|
     %tr
       %td= link_to_user(post.user)
-      %td= link_to post.text, post
+      %td= link_to l(post.created_at), post
+      %td= post.text
       %td= link_to post.url,post.url
       %td
         = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(post), :class => 'btn btn-mini' if can? :edit, post

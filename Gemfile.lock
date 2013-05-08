@@ -7,6 +7,16 @@ GIT
       rails (>= 3.0.0)
 
 GIT
+  remote: git://github.com/ernie/ransack.git
+  revision: 9b9fd09915ec8db31ac2fdc57e81d69c47b0e047
+  branch: rails-4
+  specs:
+    ransack (0.7.2)
+      actionpack
+      activerecord
+      polyamorous
+
+GIT
   remote: git://github.com/ryanb/cancan.git
   revision: e6bf4c8d12dca316eb4f0923ca30b6d3dfedb7ae
   branch: 2.0
@@ -133,6 +143,8 @@ GEM
     nokogiri (1.5.9)
     ntlm-http (0.1.1)
     pg (0.15.1)
+    polyamorous (0.6.2)
+      activerecord (>= 3.0)
     polyglot (0.3.3)
     pry (0.9.12.1)
       coderay (~> 1.0.5)
@@ -244,6 +256,7 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 4.0.0.beta1)
+  ransack!
   rspec-rails
   sass-rails (~> 4.0.0.beta1)
   simple_form

@@ -1,0 +1,4 @@
+= search_form_for @q, html: { class: 'form-search' } do |f|
+  =f.text_field :text_cont, class: 'search-query', placeholder: "本文検索"
+  =f.text_field :url_cont, class: 'search-query', placeholder: "URL 検索"
+  =f.submit class: :btn

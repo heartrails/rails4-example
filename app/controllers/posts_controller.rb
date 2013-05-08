@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: :update
-  load_and_authorize_resource except: :create
+  load_and_authorize_resource except: [:index, :create]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @q = Post.includes(:user).search(params[:q])
+    @posts = @q.result#(:distinct => true)
   end
 
   # GET /posts/1
