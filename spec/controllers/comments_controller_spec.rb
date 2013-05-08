@@ -23,12 +23,12 @@ describe CommentsController do
   # This should return the minimal set of attributes required to create a valid
   # Comment. As you add validations to Comment, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { FactoryGirl.attributes_for(:comment) }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:comment).slice(:body) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # CommentsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { { user_id: @comment.user.to_param } }
 
   before do
     @comment = FactoryGirl.create(:comment)
@@ -79,7 +79,7 @@ describe CommentsController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "user" => "invalid value" } }
+      let(:attributes){ { body: "" } }
       it "assigns a newly created but unsaved comment as @comment" do
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
@@ -98,7 +98,7 @@ describe CommentsController do
   describe "PUT update" do
     subject(:action){ put :update, {id: @comment.to_param, comment: attributes}, valid_session }
     describe "with valid params" do
-      let(:attributes){ { "user_id" => "1" } }
+      let(:attributes){ { "body" => "update" } }
       it "updates the requested comment" do
         # Assuming there are no other comments in the database, this
         # specifies that the Comment created on the previous line

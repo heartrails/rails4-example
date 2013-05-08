@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: :update
+  load_and_authorize_resource except: :create
 
   # GET /posts
   # GET /posts.json
@@ -24,7 +25,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(post_params.merge(user_id: current_user.id))
+    authorize! :create, @post
 
     respond_to do |format|
       if @post.save
@@ -69,6 +71,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :text, :url)
+      params.require(:post).permit(:text, :url)
     end
 end

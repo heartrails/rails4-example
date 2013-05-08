@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: :update
+  load_and_authorize_resource except: :create
 
   # GET /users
   # GET /users.json
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    authorize! :create, @user
 
     respond_to do |format|
       if @user.save

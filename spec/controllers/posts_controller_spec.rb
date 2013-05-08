@@ -28,10 +28,10 @@ describe PostsController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # PostsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { { user_id: @post.user_id } }
 
   before do
-    @post = Post.create! valid_attributes
+    @post = FactoryGirl.create(:post)
   end
 
   describe "GET index" do
@@ -86,7 +86,7 @@ describe PostsController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "user" => "invalid value" } }
+      let(:attributes){ { "url" => "invalid value" } }
       it "assigns a newly created but unsaved post as @post" do
         # Trigger the behavior that occurs when invalid params are submitted
         Post.any_instance.stub(:save).and_return(false)
@@ -105,7 +105,7 @@ describe PostsController do
   describe "PUT update" do
     subject(:action){ put :update, {id: @post.to_param, post: attributes}, valid_session }
     describe "with valid params" do
-      let(:attributes){ { "user_id" => "1" } }
+      let(:attributes){ { "text" => "update" } }
       it "updates the requested post" do
         # Assuming there are no other posts in the database, this
         # specifies that the Post created on the previous line
@@ -144,13 +144,21 @@ describe PostsController do
   end
 
   describe "DELETE destroy" do
-    subject(:action){ delete :destroy, {id: @post.to_param}, valid_session }
-    it "destroys the requested post" do
-      expect{subject}.to change(Post, :count).by(-1)
+    subject(:action){ delete :destroy, {id: @post.to_param}, session }
+    context "with valid user" do
+      let(:session){ valid_session }
+      it "destroys the requested post" do
+        expect{subject}.to change(Post, :count).by(-1)
+      end
+      it "redirects to the posts list" do
+        expect(subject).to redirect_to(posts_url)
+      end
     end
-
-    it "redirects to the posts list" do
-      expect(subject).to redirect_to(posts_url)
+    context "without valid user" do
+      let(:session){ {} }
+      it "fail to destroy requested post" do
+        expect{subject}.to raise_error(CanCan::Unauthorized)
+      end
     end
   end
 
