@@ -11,8 +11,8 @@ describe "users/new" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", users_path, "post" do
         assert_select "input#user_username[name=?]", "user[username]"
-        assert_select "input#user_crypted_password[name=?]", "user[crypted_password]"
-        assert_select "input#user_salt[name=?]", "user[salt]"
+        assert_select "input#user_password[name=?]", "user[password]"
+        assert_select "input#user_password_confirmation[name=?]", "user[password_confirmation]"
     end
   end
 end

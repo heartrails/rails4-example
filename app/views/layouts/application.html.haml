@@ -28,21 +28,16 @@
           %a.brand(href="/") Example
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+              %li= link_to "投稿一覧", posts_path
+              %li= link_to "新規投稿", new_post_path
+            %ul.nav.pull-right
+              %li= link_to "登録", new_user_path
+              %li= link_to "ログイン", new_sessions_path
 
     .container-fluid
 
       .row-fluid
-        .span3
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-        .span9
+        .span12
           = bootstrap_flash
           = yield
     
