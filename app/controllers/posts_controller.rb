@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @q = Post.includes(:user).search(params[:q])
+    @q = Post.includes(:user, :comments).search(params[:q])
     @posts = @q.result#(:distinct => true)
   end
 
