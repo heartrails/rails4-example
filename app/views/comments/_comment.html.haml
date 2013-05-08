@@ -1,0 +1,7 @@
+%li
+  = comment.body
+  (
+  = link_to_user(comment.user)
+  )
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_comment_path(comment), :class => 'btn btn-mini' if can? :edit, comment
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), comment_path(comment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' if can? :destroy, comment

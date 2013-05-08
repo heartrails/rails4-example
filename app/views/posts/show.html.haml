@@ -12,5 +12,10 @@
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn' if can? :update, @post
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' if can? :destroy, @post
+
+%h2 コメント
+%ul
+  = render @post.comments
+= link_to t('.new', :default => t("helpers.links.new")), new_post_comment_path(@post), :class => 'btn btn-primary'

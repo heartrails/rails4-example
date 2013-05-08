@@ -2,7 +2,7 @@ Example::Application.routes.draw do
   root :to => 'posts#index'
 
   resources :posts, shallow: true do
-    resources :comments, except: :index
+    resources :comments, except: [:index, :show]
   end
 
   resources :users, except: :index
