@@ -29,10 +29,13 @@
           .container.nav-collapse
             %ul.nav
               %li= link_to "投稿一覧", posts_path
-              %li= link_to "新規投稿", new_post_path
+              %li= link_to "新規投稿", new_post_path if can? :create, :posts
             %ul.nav.pull-right
-              %li= link_to "登録", new_user_path
-              %li= link_to "ログイン", new_sessions_path
+              - if current_user
+                %li= link_to "ログアウト", sessions_path, method: :delete
+              - else
+                %li= link_to "登録", new_user_path
+                %li= link_to "ログイン", new_sessions_path
 
     .container-fluid
 

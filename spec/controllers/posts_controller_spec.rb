@@ -51,10 +51,17 @@ describe PostsController do
   end
 
   describe "GET new" do
-    subject(:action){ get :new, {}, valid_session }
-    it "assigns a new post as @post" do
-      subject
-      expect(assigns(:post)).to be_a_new(Post)
+    subject(:action){ get :new, {}, session }
+    context "with login" do
+      let(:session){ valid_session }
+      it "assigns a new post as @post" do
+        subject
+        expect(assigns(:post)).to be_a_new(Post)
+      end
+    end
+    context "without login" do
+      let(:session){ {} }
+      it { expect{subject}.to raise_error(CanCan::Unauthorized) }
     end
   end
 
