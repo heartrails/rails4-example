@@ -2,14 +2,30 @@ require 'spec_helper'
 
 describe "posts/index" do
   before(:each) do
-    assign(:posts, FactoryGirl.create_list(:post, 2))
+    @posts = assign(:posts, FactoryGirl.create_list(:post, 2))
   end
 
-  it "renders a list of posts" do
-    render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    #assert_select "tr>td", :text => , :count => 2
-    #assert_select "tr>td", :text => "MyText".to_s, :count => 2
-    #assert_select "tr>td", :text => "Url".to_s, :count => 2
+  context "without login" do
+    before do
+      controller.stub(current_user: nil)
+    end
+    it "has no edit button" do
+      render
+      assert_select "table tr", :count => 3
+      assert_select "a[href=?]", edit_post_path(@posts[0]), :count => 0
+      assert_select "a[href=?]", edit_post_path(@posts[1]), :count => 0
+    end
+  end
+  context "with login" do
+    before do
+      user = @posts[0].user
+      controller.stub(current_user: user)
+      assign(:current_ability, Ability.new(user))
+    end
+    it "has one edit link" do
+      render
+      assert_select "a[href=?]", edit_post_path(@posts[0]), :count => 1
+      assert_select "a[href=?]", edit_post_path(@posts[1]), :count => 0
+    end
   end
 end
