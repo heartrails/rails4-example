@@ -3,4 +3,10 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+begin
+  require 'ci/reporter/rake/rspec' 
+rescue LoadError
+end
+
+
 Example::Application.load_tasks

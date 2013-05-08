@@ -62,4 +62,8 @@ group :development, :test do
   gem "pry-rails"
   gem 'spring'
   gem 'faker'
+  gem 'sqlite3'
+  gem 'ci_reporter'
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
