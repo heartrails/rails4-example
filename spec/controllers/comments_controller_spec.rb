@@ -35,14 +35,6 @@ describe CommentsController do
     @post = @comment.post
   end
 
-  describe "GET show" do
-    subject { get :show, {id: @comment.to_param}, valid_session }
-    it "assigns the requested comment as @comment" do
-      subject
-      expect(assigns(:comment)).to eq(@comment)
-    end
-  end
-
   describe "GET new" do
     subject(:action){ get :new, {post_id: @post.to_param}, valid_session }
     it "assigns a new comment as @comment" do
@@ -74,7 +66,7 @@ describe CommentsController do
       end
 
       it "redirects to the created comment" do
-        expect(subject).to redirect_to(Comment.last)
+        expect(subject).to redirect_to(Comment.last.post)
       end
     end
 
@@ -115,7 +107,7 @@ describe CommentsController do
 
       it "redirects to the comment" do
         subject
-        expect(response).to redirect_to(@comment)
+        expect(response).to redirect_to(@comment.post)
       end
     end
 
