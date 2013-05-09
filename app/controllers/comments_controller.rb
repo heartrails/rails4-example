@@ -1,7 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: :update
+  before_action only: [:create, :update] do
+    params[:comment] = params.require(:comment).permit(:body)
+    params[:comment][:post_id] = params[:post_id] if params[:action] == 'create'
+  end
   load_and_authorize_resource :post
-  load_and_authorize_resource except: :create
+  load_and_authorize_resource
 
   # GET /comments/1
   # GET /comments/1.json
@@ -10,8 +13,6 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @post = Post.find(params[:post_id])
-    @comment = Comment.new
   end
 
   # GET /comments/1/edit
@@ -21,9 +22,6 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params.merge(user_id: current_user.id, post_id: params[:post_id]))
-    authorize! :create, @comment
-
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment.post, notice: 'Comment was successfully created.' }
@@ -39,7 +37,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1.json
   def update
     respond_to do |format|
-      if @comment.update(comment_params)
+      if @comment.save
         format.html { redirect_to @comment.post, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
@@ -58,16 +56,4 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-      authorize! params[:action], @comment
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:body)
-    end
 end

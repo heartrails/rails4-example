@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: :update
-  load_and_authorize_resource except: [:index, :create]
+  before_action only: [:create, :update] do
+    params[:post] = params.require(:post).permit(:text, :url)
+  end
+  load_and_authorize_resource except: :index
 
   # GET /posts
   # GET /posts.json
@@ -16,7 +18,6 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
   end
 
   # GET /posts/1/edit
@@ -26,9 +27,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params.merge(user_id: current_user.id))
-    authorize! :create, @post
-
+    #@post = Post.new(post_params.merge(user_id: current_user.id))
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -44,7 +43,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -63,15 +62,4 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:text, :url)
-    end
 end
