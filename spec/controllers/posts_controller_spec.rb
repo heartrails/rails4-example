@@ -112,14 +112,10 @@ describe PostsController do
   describe "PUT update" do
     subject(:action){ put :update, {id: @post.to_param, post: attributes}, valid_session }
     describe "with valid params" do
-      let(:attributes){ { "text" => "update" } }
+      let(:attributes){ { "text" => "updated text" } }
       it "updates the requested post" do
-        # Assuming there are no other posts in the database, this
-        # specifies that the Post created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Post.any_instance.should_receive(:update).with(attributes)
         subject
+        expect(assigns(:post).text).to eq('updated text')
       end
 
       it "assigns the requested post as @post" do

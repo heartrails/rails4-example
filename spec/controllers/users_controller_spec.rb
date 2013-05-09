@@ -98,14 +98,10 @@ describe UsersController do
   describe "PUT update" do
     subject(:action){ put :update, {id: @user.to_param, user: attributes}, valid_session }
     describe "with valid params" do
-      let(:attributes){ { "username" => "MyString" } }
+      let(:attributes){ { "username" => "updated_name" } }
       it "updates the requested user" do
-        # Assuming there are no other users in the database, this
-        # specifies that the User created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        User.any_instance.should_receive(:update).with(attributes)
         subject
+        expect(assigns(:user).username).to eq('updated_name')
       end
 
       it "assigns the requested user as @user" do

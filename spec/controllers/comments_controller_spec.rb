@@ -92,12 +92,8 @@ describe CommentsController do
     describe "with valid params" do
       let(:attributes){ { "body" => "update" } }
       it "updates the requested comment" do
-        # Assuming there are no other comments in the database, this
-        # specifies that the Comment created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Comment.any_instance.should_receive(:update).with(attributes)
         subject
+        expect(assigns(:comment).body).to eq('update')
       end
 
       it "assigns the requested comment as @comment" do
@@ -112,7 +108,7 @@ describe CommentsController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "user" => "invalid value" } }
+      let(:attributes){ { "body" => "" } }
       it "assigns the comment as @comment" do
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
