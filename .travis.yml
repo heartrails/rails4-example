@@ -1,0 +1,7 @@
+rvm:
+- 1.9.3
+- 2.0.0
+branches:
+  only:
+    - master
+script: 'ruby ci.rb'

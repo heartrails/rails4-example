@@ -1,5 +1,3 @@
-[![Build Status](http://jenkins.under-dev.net/job/example_test/badge/icon)](http://jenkins.under-dev.net/job/example_test/)
-
 Rails4 のアプリケーションのごく簡単なサンプル
 ======
 
