@@ -95,15 +95,11 @@ describe PostsController do
     describe "with invalid params" do
       let(:attributes){ { "url" => "invalid value" } }
       it "assigns a newly created but unsaved post as @post" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:post)).to be_a_new(Post)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("new")
       end
     end
@@ -130,17 +126,13 @@ describe PostsController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "user" => "invalid value" } }
+      let(:attributes){ { "url" => "invalid value" } }
       it "assigns the post as @post" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:post)).to eq(@post)
       end
 
       it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("edit")
       end
     end

@@ -91,15 +91,11 @@ describe <%= controller_class_name %>Controller do
     describe "with invalid params" do
       let(:attributes){ <%=formatted_hash(example_invalid_attributes)%> }
       it "assigns a newly created but unsaved <%= ns_file_name %> as @<%= ns_file_name %>" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        <%= class_name %>.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:<%= ns_file_name %>)).to be_a_new(<%= class_name %>)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        <%= class_name %>.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("new")
       end
     end
@@ -110,16 +106,8 @@ describe <%= controller_class_name %>Controller do
     describe "with valid params" do
       let(:attributes){ <%= formatted_hash(example_params_for_update) %> }
       it "updates the requested <%= ns_file_name %>" do
-        # Assuming there are no other <%= table_name %> in the database, this
-        # specifies that the <%= class_name %> created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        <%- if RSpec::Rails.rails_version_satisfied_by?('>= 4.0.0.beta1') -%>
-        <%= class_name %>.any_instance.should_receive(:update).with(attributes)
-        <%- else -%>
-        <%= class_name %>.any_instance.should_receive(:update_attributes).with(attributes)
-        <%- end -%>
         subject
+        expect(assigns(:<%= ns_file_name %>).<%= example_params_for_update.keys[0] %>).to eq(<%= example_params_for_update.values[0] %>)
       end
 
       it "assigns the requested <%= ns_file_name %> as @<%= ns_file_name %>" do
@@ -136,15 +124,12 @@ describe <%= controller_class_name %>Controller do
     describe "with invalid params" do
       let(:attributes){ <%= formatted_hash(example_invalid_attributes) %> }
       it "assigns the <%= ns_file_name %> as @<%= ns_file_name %>" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        <%= class_name %>.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:<%= ns_file_name %>)).to eq(@<%= file_name %>)
+        expect((@<%= file_name %>.reload.<%= example_params_for_update.keys[0] %>).not_to eq(<%= example_params_for_update.values[0] %>)
       end
 
       it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        <%= class_name %>.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("edit")
       end
     end

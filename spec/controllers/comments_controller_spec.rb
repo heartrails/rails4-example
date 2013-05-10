@@ -73,15 +73,11 @@ describe CommentsController do
     describe "with invalid params" do
       let(:attributes){ { body: "" } }
       it "assigns a newly created but unsaved comment as @comment" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:comment)).to be_a_new(Comment)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("new")
       end
     end
@@ -110,15 +106,11 @@ describe CommentsController do
     describe "with invalid params" do
       let(:attributes){ { "body" => "" } }
       it "assigns the comment as @comment" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:comment)).to eq(@comment)
       end
 
       it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("edit")
       end
     end

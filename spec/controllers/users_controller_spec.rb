@@ -81,15 +81,11 @@ describe UsersController do
     describe "with invalid params" do
       let(:attributes){ valid_attributes.merge(password_confirmation: "hogehoge") }
       it "assigns a newly created but unsaved user as @user" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:user)).to be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("new")
       end
     end
@@ -116,19 +112,13 @@ describe UsersController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "username" => "invalid value" } }
+      let(:attributes){ { "username" => "" } }
       it "assigns the user as @user" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:user)).to eq(@user)
       end
 
-      it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
-        expect(subject).to render_template("edit")
-      end
+      it { should render_template("edit") }
     end
   end
 
