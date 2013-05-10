@@ -122,8 +122,8 @@ describe CommentsController do
       expect{subject}.to change(Comment, :count).by(-1)
     end
 
-    it "redirects to the comments list" do
-      expect(subject).to redirect_to(post_comments_url(@post.to_param))
+    it "redirects to the parent post" do
+      expect(subject).to redirect_to(post_url(@post.to_param))
     end
   end
 

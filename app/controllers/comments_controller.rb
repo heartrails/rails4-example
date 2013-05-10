@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  respond_to :json, except: %i(new edit)
+
   before_action only: [:create, :update] do
     params[:comment] = params.require(:comment).permit(:body)
     params[:comment][:post_id] = params[:post_id] if params[:action] == 'create'
@@ -9,51 +11,38 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    respond_with @comment
   end
 
   # GET /comments/new
   def new
+    respond_with @comment
   end
 
   # GET /comments/1/edit
   def edit
+    respond_with @comment
   end
 
   # POST /comments
   # POST /comments.json
   def create
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment.post, notice: 'Comment was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @comment }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    flash.notice = I18n.t("helpers.notices.created", model: Comment.model_name.human) if @comment.save
+    respond_with @comment, location: @comment.post
   end
 
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment.post, notice: 'Comment was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    flash.notice = I18n.t("helpers.notices.updated", model: Comment.model_name.human) if @comment.save
+    respond_with @comment, location: @comment.post
   end
 
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to post_comments_url(@comment.post) }
-      format.json { head :no_content }
-    end
+    flash.notice = I18n.t("helpers.notices.destroyed", model: Comment.model_name.human)
+    respond_with @comment, location: @comment.post
   end
 end

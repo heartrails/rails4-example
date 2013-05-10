@@ -128,8 +128,8 @@ describe UsersController do
       expect{subject}.to change(User, :count).by(-1)
     end
 
-    it "redirects to the users list" do
-      expect(subject).to redirect_to(users_url)
+    it "redirects to root" do
+      expect(subject).to redirect_to(root_url)
     end
   end
 

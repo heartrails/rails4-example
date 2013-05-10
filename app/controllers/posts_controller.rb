@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  respond_to :json, except: %i(new edit)
+
   before_action only: [:create, :update] do
     params[:post] = params.require(:post).permit(:text, :url)
   end
@@ -8,58 +10,45 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @q = Post.includes(:user, :comments).search(params[:q])
-    @posts = @q.result#(:distinct => true)
+    @posts = @q.result(:distinct => true)
+    respond_with @posts
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    respond_with @post
   end
 
   # GET /posts/new
   def new
+    respond_with @post
   end
 
   # GET /posts/1/edit
   def edit
+    respond_with @post
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    #@post = Post.new(post_params.merge(user_id: current_user.id))
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    flash.notice = I18n.t("helpers.notices.created", model: Post.model_name.human) if @post.save
+    respond_with @post
   end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    flash.notice = I18n.t("helpers.notices.updated", model: Post.model_name.human) if @post.save
+    respond_with @post
   end
 
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    flash.notice = I18n.t("helpers.notices.destroyed", model: Post.model_name.human)
+    respond_with @post
   end
 end

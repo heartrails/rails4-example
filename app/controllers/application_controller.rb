@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   enable_authorization
 
+  respond_to :html
+
   before_action :log_user_info
 
   def current_user

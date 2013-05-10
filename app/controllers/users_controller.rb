@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  respond_to :json, except: %i(new edit)
+
   before_action only: [:create, :update] do
     params[:user] = params.require(:user).permit(:username, :password, :password_confirmation)
   end
@@ -7,51 +9,41 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    respond_with @user
   end
 
   # GET /users/new
   def new
+    respond_with @user
   end
 
   # GET /users/1/edit
   def edit
+    respond_with @user
   end
 
   # POST /users
   # POST /users.json
   def create
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      flash.notice = I18n.t("helpers.notices.created", model: User.model_name.human)
+      session[:user_id] = @user.id
     end
+    respond_with @user
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    I18n.t("helpers.notices.updated", model: User.model_name.human)  if @user.save
+    respond_with @user
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    flash.notice = I18n.t("helpers.notices.destroyed", model: User.model_name.human)
+    respond_with @user, location: root_url
   end
 end
