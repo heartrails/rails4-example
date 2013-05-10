@@ -20,3 +20,4 @@ config/database.yml
 coverage
 .DS_Store
 spec/reports
+.ruby-version
