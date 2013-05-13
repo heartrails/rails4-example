@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130508115123) do
+ActiveRecord::Schema.define(version: 20130509105127) do
 
   create_table "comments", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.string   "body"
+    t.integer  "user_id",    null: false
+    t.integer  "post_id",    null: false
+    t.string   "body",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,21 +25,29 @@ ActiveRecord::Schema.define(version: 20130508115123) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "posts", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",                    null: false
     t.text     "text"
     t.string   "url"
+    t.integer  "comments_count", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "comments_count", default: 0
   end
 
-  add_index "posts", ["comments_count"], name: "index_posts_on_comments_count"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+
   create_table "users", force: true do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.string   "salt"
+    t.string   "username",        null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

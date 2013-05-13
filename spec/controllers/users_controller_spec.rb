@@ -81,16 +81,18 @@ describe UsersController do
     describe "with invalid params" do
       let(:attributes){ valid_attributes.merge(password_confirmation: "hogehoge") }
       it "assigns a newly created but unsaved user as @user" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:user)).to be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("new")
+      end
+    end
+    describe "with invalid params (Array)" do
+      let(:attributes){ [1, 2, 3] }
+      it "assigns a newly created but unsaved user as @user" do
+        expect{subject}.to raise_error(ActionController::InvalidParameterType)
       end
     end
   end
@@ -98,14 +100,10 @@ describe UsersController do
   describe "PUT update" do
     subject(:action){ put :update, {id: @user.to_param, user: attributes}, valid_session }
     describe "with valid params" do
-      let(:attributes){ { "username" => "MyString" } }
+      let(:attributes){ { "username" => "updated_name" } }
       it "updates the requested user" do
-        # Assuming there are no other users in the database, this
-        # specifies that the User created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        User.any_instance.should_receive(:update).with(attributes)
         subject
+        expect(assigns(:user).username).to eq('updated_name')
       end
 
       it "assigns the requested user as @user" do
@@ -120,19 +118,13 @@ describe UsersController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "username" => "invalid value" } }
+      let(:attributes){ { "username" => "" } }
       it "assigns the user as @user" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:user)).to eq(@user)
       end
 
-      it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        User.any_instance.stub(:save).and_return(false)
-        expect(subject).to render_template("edit")
-      end
+      it { should render_template("edit") }
     end
   end
 
@@ -142,8 +134,8 @@ describe UsersController do
       expect{subject}.to change(User, :count).by(-1)
     end
 
-    it "redirects to the users list" do
-      expect(subject).to redirect_to(users_url)
+    it "redirects to root" do
+      expect(subject).to redirect_to(root_url)
     end
   end
 
