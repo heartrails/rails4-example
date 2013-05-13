@@ -1,7 +1,22 @@
+env:
+  global:
+  - secure: |-
+      M8XRFyC1VoIFuAU3MYreMOvjmpz988sFmvScwap1xiI5TdYH6f65ezipLwOn
+      Ew0/Q2AQbXf4ifLotZVyXJ+5+Iqzdh4yiEOt7HGBfvibzwdPAo1HTmAfVA6Y
+      U4HjCMQ93+zqLiMcnSza1e7mc6vC+YibEUJxIZr27OlopgUaLRE=
 rvm:
-- 1.9.3
 - 2.0.0
 branches:
   only:
     - master
-script: 'ruby ci.rb'
+script: 'ruby ci.rb travis'
+after_success:
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  - git remote add heroku git@heroku.com:heartrails-rails4-example.git
+  - echo "Host heroku.com" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  - heroku keys:clear
+  - yes | heroku keys:add
+  - yes | git push heroku master
