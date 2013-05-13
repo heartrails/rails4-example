@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   respond_to :json, except: %i(new edit)
 
   before_action only: [:create, :update] do
-    params[:post] = params.require(:post).permit(:text, :url)
+    params[:post] = params.require_hash(:post).permit(:text, :url)
   end
   load_and_authorize_resource except: :index
 

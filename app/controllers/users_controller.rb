@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :json, except: %i(new edit)
 
   before_action only: [:create, :update] do
-    params[:user] = params.require(:user).permit(:username, :password, :password_confirmation)
+    params[:user] = params.require_hash(:user).permit(:username, :password, :password_confirmation)
   end
   load_and_authorize_resource
 

@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user_params = params[:user] || {}
+    user_params = params.require_hash(:user)
     user = User.find_by(username: user_params[:username])
     respond_to do |format|
       if user && user.authenticate(user_params[:password])

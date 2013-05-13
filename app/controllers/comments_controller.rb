@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   respond_to :json, except: %i(new edit)
 
   before_action only: [:create, :update] do
-    params[:comment] = params.require(:comment).permit(:body)
+    params[:comment] = params.require_hash(:comment).permit(:body)
     params[:comment][:post_id] = params[:post_id] if params[:action] == 'create'
   end
   load_and_authorize_resource :post

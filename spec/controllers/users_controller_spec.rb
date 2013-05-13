@@ -89,6 +89,12 @@ describe UsersController do
         expect(subject).to render_template("new")
       end
     end
+    describe "with invalid params (Array)" do
+      let(:attributes){ [1, 2, 3] }
+      it "assigns a newly created but unsaved user as @user" do
+        expect{subject}.to raise_error(ActionController::InvalidParameterType)
+      end
+    end
   end
 
   describe "PUT update" do
