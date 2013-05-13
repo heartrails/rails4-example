@@ -126,7 +126,7 @@ describe <%= controller_class_name %>Controller do
       it "assigns the <%= ns_file_name %> as @<%= ns_file_name %>" do
         subject
         expect(assigns(:<%= ns_file_name %>)).to eq(@<%= file_name %>)
-        expect((@<%= file_name %>.reload.<%= example_params_for_update.keys[0] %>).not_to eq(<%= example_params_for_update.values[0] %>)
+        expect(@<%= file_name %>.reload.<%= example_params_for_update.keys[0] %>).not_to eq(<%= example_params_for_update.values[0] %>)
       end
 
       it "re-renders the 'edit' template" do
