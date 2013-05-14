@@ -24,4 +24,6 @@ Example::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
+
+  config.cache_store = :dalli_store, "localhost:11211"
 end
