@@ -8,14 +8,17 @@ class ApplicationController < ActionController::Base
 
   before_action :log_user_info
 
+  # returns current +User+ if logged in
+  # * *Returns* :
+  #   - +User+ instance if logged in, otherwise nil
   def current_user
-    User.find_by(id: session[:user_id])
+    User.find_by(id: session[:user_id]) if session[:user_id]
   end
   helper_method :current_user
 
   private
 
   def log_user_info
-    logger.info "  user_id: #{session[:user_id]}, request_ip: #{request.ip}, session_id: #{session[:session_id]}" if session[:user_id]
+    logger.info "  user_id: #{session[:user_id]}, request_ip: #{request.ip}, session_id: #{session.id}" if session[:user_id]
   end
 end

@@ -6,24 +6,40 @@ class UsersController < ApplicationController
   end
   load_and_authorize_resource
 
-  # GET /users/1
-  # GET /users/1.json
+  # show the user
+  # * *routes*:
+  #   - GET /users/:id (.html)
+  #   - GET /users/:id.json
+  # * *params* :
+  #   - id: ID of the user
   def show
     respond_with @user
   end
 
-  # GET /users/new
+  # show new form of a user
+  # * *routes*:
+  #   - GET /users/new (.html)
   def new
     respond_with @user
   end
 
-  # GET /users/1/edit
+  # show edit form of the user
+  # * *routes*:
+  #   - GET /users/:id/edit (.html)
+  # * *params* :
+  #   - id: ID of the user
   def edit
     respond_with @user
   end
 
-  # POST /users
-  # POST /users.json
+  # create a user
+  # * *routes*:
+  #   - POST /users (.html)
+  #   - POST /users.json
+  # * *params* :
+  #   - user.username: username
+  #   - user.password: password
+  #   - user.password_confirmation: confirmation of the password
   def create
     if @user.save
       flash.notice = I18n.t("helpers.notices.created", model: User.model_name.human)
@@ -32,15 +48,25 @@ class UsersController < ApplicationController
     respond_with @user
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+  # * *routes*:
+  #   - PATCH/PUT /users/:id (.html)
+  #   - PATCH/PUT /users/:id.json
+  # * *params* :
+  #   - id: ID of the user
+  #   - user.username: username
+  #   - user.password: password
+  #   - user.password_confirmation: confirmation of the password
   def update
     I18n.t("helpers.notices.updated", model: User.model_name.human)  if @user.save
     respond_with @user
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+  # delete the user
+  # * *routes*:
+  #   - DELETE /users/:id (.html)
+  #   - DELETE /users/:id.json
+  # * *params* :
+  #   - id: ID of the user
   def destroy
     @user.destroy
     flash.notice = I18n.t("helpers.notices.destroyed", model: User.model_name.human)

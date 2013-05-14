@@ -6,46 +6,75 @@ class PostsController < ApplicationController
   end
   load_and_authorize_resource except: :index
 
-  # GET /posts
-  # GET /posts.json
+  # show list of posts
+  # * *routes*:
+  #   - GET /posts (.html)
+  #   - GET /posts.json
+  # * *params* :
+  #   - q: Hash of search keys and values (optional)
   def index
     @q = Post.includes(:user, :comments).search(params[:q])
     @posts = @q.result(:distinct => true)
     respond_with @posts
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
+  # show the post
+  # * *routes*:
+  #   - GET /posts/:id (.html)
+  #   - GET /posts/:id.json
+  # * *params* :
+  #   - id: ID of the post
   def show
     respond_with @post
   end
 
-  # GET /posts/new
+  # show new form of a post
+  # * *routes*:
+  #   - GET /posts/new (.html)
   def new
     respond_with @post
   end
 
-  # GET /posts/1/edit
+  # show edit form of the post
+  # * *routes*:
+  #   - GET /posts/:id/edit (.html)
+  # * *params* :
+  #   - id: ID of the post
   def edit
     respond_with @post
   end
 
-  # POST /posts
-  # POST /posts.json
+  # create a post
+  # * *routes*:
+  #   - POST /posts (.html)
+  #   - POST /posts.json
+  # * *params* :
+  #   - post.text: post's text
+  #   - post.url: post's url
   def create
     flash.notice = I18n.t("helpers.notices.created", model: Post.model_name.human) if @post.save
     respond_with @post
   end
 
-  # PATCH/PUT /posts/1
-  # PATCH/PUT /posts/1.json
+  # update the post
+  # * *routes*:
+  #   - PATCH/PUT /posts/:id (.html)
+  #   - PATCH/PUT /posts/:id.json
+  # * *params* :
+  #   - id: ID of the post
+  #   - post.text: post's text
+  #   - post.url: post's url
   def update
     flash.notice = I18n.t("helpers.notices.updated", model: Post.model_name.human) if @post.save
     respond_with @post
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
+  # delete the post
+  # * *routes*:
+  #   - DELETE /posts/:id (.html)
+  #   - DELETE /posts/:id.json
+  # * *params* :
+  #   - id: ID of the post
   def destroy
     @post.destroy
     flash.notice = I18n.t("helpers.notices.destroyed", model: Post.model_name.human)

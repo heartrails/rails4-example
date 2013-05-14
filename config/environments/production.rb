@@ -20,7 +20,7 @@ Example::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor  = :uglifier
@@ -77,4 +77,23 @@ Example::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
+
+  if ENV['EXCEPTION_MAIL_TO']
+    config.middleware.use ExceptionNotifier,
+      :email => {
+        :email_prefix => "[example] ",
+        :sender_address => %{"notifier" <notifier@heartrails.com>},
+        :exception_recipients => ENV['EXCEPTION_MAIL_TO'].split(',')
+      }
+  end
 end

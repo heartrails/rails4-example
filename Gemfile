@@ -9,8 +9,8 @@ gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.beta1'
-  gem 'coffee-rails', '~> 4.0.0.beta1'
+  #gem 'sass-rails',   '~> 4.0.0.beta1'
+  #gem 'coffee-rails', '~> 4.0.0.beta1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', platforms: :ruby
@@ -44,6 +44,7 @@ gem "haml-rails"
 gem "simple_form"
 gem "kaminari"
 gem "factory_girl_rails"
+gem 'faker'
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
 gem 'therubyracer'
 gem "less-rails"
@@ -56,6 +57,7 @@ group :development do
   gem "i18n_generators", git: "git://github.com/amatsuda/i18n_generators.git"
   gem "better_errors"
   gem 'binding_of_caller'
+  gem 'annotate'
 end
 
 group :development, :test do
@@ -63,7 +65,6 @@ group :development, :test do
   gem "webrat"
   gem "pry-rails"
   gem 'spring'
-  gem 'faker'
   gem 'sqlite3'
   gem 'ci_reporter'
   gem 'simplecov'
