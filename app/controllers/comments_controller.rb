@@ -8,38 +8,62 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :post
   load_and_authorize_resource
 
-  # GET /comments/1
-  # GET /comments/1.json
+  # show the comment
+  # * *routes*:
+  #   - GET /comments/:id (.html)
+  #   - GET /comments/:id.json
+  # * *params* :
+  #   - id: ID of the comment
   def show
     respond_with @comment
   end
 
-  # GET /comments/new
+  # show new form of a comment
+  # * *routes*:
+  #   - GET /comments/new (.html)
   def new
     respond_with @comment
   end
 
-  # GET /comments/1/edit
+  # show edit form of the comment
+  # * *routes*:
+  #   - GET /comments/:id/edit (.html)
+  # * *params* :
+  #   - id: ID of the comment
   def edit
     respond_with @comment
   end
 
-  # POST /comments
-  # POST /comments.json
+  # create a comment belongs to the post
+  # * *routes*:
+  #   - POST /comments (.html)
+  #   - POST /comments.json
+  # * *params* :
+  #   - post_id: ID of the post
+  #   - comment.body: comment's body
   def create
     flash.notice = I18n.t("helpers.notices.created", model: Comment.model_name.human) if @comment.save
     respond_with @comment, location: @comment.post
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
+  # update the comment
+  # * *routes*:
+  #   - PATCH/PUT /comments/:id (.html)
+  #   - PATCH/PUT /comments/:id.json
+  # * *params* :
+  #   - id: ID of the comment
+  #   - comment.body: comment's body
   def update
     flash.notice = I18n.t("helpers.notices.updated", model: Comment.model_name.human) if @comment.save
     respond_with @comment, location: @comment.post
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
+  # delete the comment
+  # * *routes*:
+  #   - DELETE /comments/:id (.html)
+  #   - DELETE /comments/:id.json
+  # * *params* :
+  #   - id: ID of the comment
   def destroy
     @comment.destroy
     flash.notice = I18n.t("helpers.notices.destroyed", model: Comment.model_name.human)
