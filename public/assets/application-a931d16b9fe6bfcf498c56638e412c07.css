@@ -7328,8 +7328,8 @@ a.badge:focus {
  */
 @font-face {
   font-family: "FontAwesome";
-  src: url("/assets/fontawesome-webfont.eot?v=3.0.2");
-  src: url("/assets/fontawesome-webfont.eot?#iefix&v=3.0.2") format("embedded-opentype"), url("/assets/fontawesome-webfont.woff?v=3.0.2") format("woff"), url("/assets/fontawesome-webfont.ttf?v=3.0.2") format("truetype");
+  src: url("/assets/fontawesome-webfont-bf97e55fd5de6efafe67f5c172ec4932.eot?v=3.0.2");
+  src: url("/assets/fontawesome-webfont-bf97e55fd5de6efafe67f5c172ec4932.eot?#iefix&v=3.0.2") format("embedded-opentype"), url("/assets/fontawesome-webfont-bb77893d325853e4e3029e6ce6c34f5b.woff?v=3.0.2") format("woff"), url("/assets/fontawesome-webfont-7fde962efd97c35eaca516dfe499d437.ttf?v=3.0.2") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

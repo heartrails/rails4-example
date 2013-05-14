@@ -88,10 +88,12 @@ Example::Application.configure do
     :enable_starttls_auto => true
   }
 
-  config.middleware.use ExceptionNotifier,
-    :email => {
-      :email_prefix => "[example] ",
-      :sender_address => %{"notifier" <notifier@heartrails.com>},
-      :exception_recipients => ENV['EXCEPTION_MAIL_TO'].split(',')
-    }
+  if ENV['EXCEPTION_MAIL_TO']
+    config.middleware.use ExceptionNotifier,
+      :email => {
+        :email_prefix => "[example] ",
+        :sender_address => %{"notifier" <notifier@heartrails.com>},
+        :exception_recipients => ENV['EXCEPTION_MAIL_TO'].split(',')
+      }
+  end
 end
