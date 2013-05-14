@@ -44,6 +44,7 @@ gem "haml-rails"
 gem "simple_form"
 gem "kaminari"
 gem "factory_girl_rails"
+gem 'faker'
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
 gem 'therubyracer'
 gem "less-rails"
@@ -63,7 +64,6 @@ group :development, :test do
   gem "webrat"
   gem "pry-rails"
   gem 'spring'
-  gem 'faker'
   gem 'sqlite3'
   gem 'ci_reporter'
   gem 'simplecov'
