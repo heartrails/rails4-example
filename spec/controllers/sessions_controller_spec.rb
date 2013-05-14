@@ -20,6 +20,10 @@ describe SessionsController do
       it "redirects to root" do
         expect(subject).to redirect_to(root_url)
       end
+      it "resets session" do
+        ActionDispatch::Request.any_instance.should_receive(:reset_session).once
+        subject
+      end
     end
     context "without valid password" do
       let(:attributes){ { username: valid_attributes[:username], password: "hogehoge" }}
