@@ -27,3 +27,11 @@ ja:
       created: "%{model}を作成しました。"
       updated: "%{model}を更新しました。"
       destroyed: "%{model}を削除しました。"
+
+  views:
+    pagination:
+      first: "<<"
+      last: ">>"
+      previous: "<"
+      next: ">"
+      truncate: "..."
