@@ -21,3 +21,5 @@ coverage
 .DS_Store
 spec/reports
 .ruby-version
+
+public/assets/
