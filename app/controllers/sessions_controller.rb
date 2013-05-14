@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(username: user_params[:username])
     respond_to do |format|
       if user && user.authenticate(user_params[:password])
+        reset_session
         session[:user_id] = user.id
         format.html { redirect_to root_url, :notice => "Logged in" }
         format.js   { head :ok }

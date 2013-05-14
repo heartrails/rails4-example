@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   before_action only: [:create, :update] do
     params[:comment] = params.require_hash(:comment).permit(:body)
-    params[:comment][:post_id] = params[:post_id] if params[:action] == 'create'
+    params[:comment][:post_id] = params[:post_id] if action_name == 'create'
   end
   load_and_authorize_resource :post
   load_and_authorize_resource
