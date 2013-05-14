@@ -21,3 +21,9 @@ ja:
         password_digest:
         salt:
         username: ユーザー名  #g
+
+  helpers:
+    notices:
+      created: "%{model}を作成しました。"
+      updated: "%{model}を更新しました。"
+      destroyed: "%{model}を削除しました。"

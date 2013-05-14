@@ -1,5 +1,5 @@
 Example::Application.routes.draw do
-  root :to => 'posts#index'
+  root to: redirect('/posts')
 
   resources :posts, shallow: true do
     resources :comments, except: [:index, :show]

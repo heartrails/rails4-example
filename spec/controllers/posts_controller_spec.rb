@@ -95,15 +95,11 @@ describe PostsController do
     describe "with invalid params" do
       let(:attributes){ { "url" => "invalid value" } }
       it "assigns a newly created but unsaved post as @post" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:post)).to be_a_new(Post)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("new")
       end
     end
@@ -112,14 +108,10 @@ describe PostsController do
   describe "PUT update" do
     subject(:action){ put :update, {id: @post.to_param, post: attributes}, valid_session }
     describe "with valid params" do
-      let(:attributes){ { "text" => "update" } }
+      let(:attributes){ { "text" => "updated text" } }
       it "updates the requested post" do
-        # Assuming there are no other posts in the database, this
-        # specifies that the Post created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Post.any_instance.should_receive(:update).with(attributes)
         subject
+        expect(assigns(:post).text).to eq('updated text')
       end
 
       it "assigns the requested post as @post" do
@@ -134,17 +126,13 @@ describe PostsController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "user" => "invalid value" } }
+      let(:attributes){ { "url" => "invalid value" } }
       it "assigns the post as @post" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:post)).to eq(@post)
       end
 
       it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Post.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("edit")
       end
     end

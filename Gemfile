@@ -38,6 +38,7 @@ gem 'bcrypt-ruby'
 # To use debugger
 # gem 'debugger'
 
+gem 'activerecord-session_store'
 gem "exception_notification", github: "smartinez87/exception_notification"
 gem "haml-rails"
 gem "simple_form"

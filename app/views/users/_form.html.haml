@@ -3,8 +3,9 @@
 
   .form-inputs
     = f.input :username
-    = f.input :password
-    = f.input :password_confirmation
+    - if f.object.new_record?
+      = f.input :password
+      = f.input :password_confirmation
 
   .form-actions
     = f.button :submit, class: "btn btn-primary"

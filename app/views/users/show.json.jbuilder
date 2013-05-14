@@ -1,1 +1,1 @@
-json.extract! @user, :username, :crypted_password, :salt, :created_at, :updated_at
+json.(@user, *%i(username created_at updated_at))

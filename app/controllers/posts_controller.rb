@@ -1,77 +1,54 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: :update
-  load_and_authorize_resource except: [:index, :create]
+  respond_to :json, except: %i(new edit)
+
+  before_action only: [:create, :update] do
+    params[:post] = params.require_hash(:post).permit(:text, :url)
+  end
+  load_and_authorize_resource except: :index
 
   # GET /posts
   # GET /posts.json
   def index
     @q = Post.includes(:user, :comments).search(params[:q])
-    @posts = @q.result#(:distinct => true)
+    @posts = @q.result(:distinct => true)
+    respond_with @posts
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    respond_with @post
   end
 
   # GET /posts/new
   def new
-    @post = Post.new
+    respond_with @post
   end
 
   # GET /posts/1/edit
   def edit
+    respond_with @post
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params.merge(user_id: current_user.id))
-    authorize! :create, @post
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    flash.notice = I18n.t("helpers.notices.created", model: Post.model_name.human) if @post.save
+    respond_with @post
   end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    flash.notice = I18n.t("helpers.notices.updated", model: Post.model_name.human) if @post.save
+    respond_with @post
   end
 
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    flash.notice = I18n.t("helpers.notices.destroyed", model: Post.model_name.human)
+    respond_with @post
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:text, :url)
-    end
 end

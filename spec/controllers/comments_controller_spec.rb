@@ -73,15 +73,11 @@ describe CommentsController do
     describe "with invalid params" do
       let(:attributes){ { body: "" } }
       it "assigns a newly created but unsaved comment as @comment" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:comment)).to be_a_new(Comment)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("new")
       end
     end
@@ -92,12 +88,8 @@ describe CommentsController do
     describe "with valid params" do
       let(:attributes){ { "body" => "update" } }
       it "updates the requested comment" do
-        # Assuming there are no other comments in the database, this
-        # specifies that the Comment created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Comment.any_instance.should_receive(:update).with(attributes)
         subject
+        expect(assigns(:comment).body).to eq('update')
       end
 
       it "assigns the requested comment as @comment" do
@@ -112,17 +104,13 @@ describe CommentsController do
     end
 
     describe "with invalid params" do
-      let(:attributes){ { "user" => "invalid value" } }
+      let(:attributes){ { "body" => "" } }
       it "assigns the comment as @comment" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
         subject
         expect(assigns(:comment)).to eq(@comment)
       end
 
       it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
         expect(subject).to render_template("edit")
       end
     end
@@ -134,8 +122,8 @@ describe CommentsController do
       expect{subject}.to change(Comment, :count).by(-1)
     end
 
-    it "redirects to the comments list" do
-      expect(subject).to redirect_to(post_comments_url(@post.to_param))
+    it "redirects to the parent post" do
+      expect(subject).to redirect_to(post_url(@post.to_param))
     end
   end
 
