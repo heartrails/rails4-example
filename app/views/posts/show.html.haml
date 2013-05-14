@@ -17,5 +17,5 @@
 
 %h2 コメント
 %ul
-  = render @post.comments
+  = render @post.cached_comments
 = link_to t('.new', :default => t("helpers.links.new")), new_post_comment_path(@post), :class => 'btn btn-primary'
