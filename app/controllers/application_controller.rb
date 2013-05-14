@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
 
   before_action :log_user_info
 
+  # returns current +User+ if logged in
+  # * *Returns* :
+  #   - +User+ instance if logged in, otherwise nil
   def current_user
     User.find_by(id: session[:user_id]) if session[:user_id]
   end
