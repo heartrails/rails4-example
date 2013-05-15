@@ -18,6 +18,9 @@ ja:
       created: "%{model}を作成しました。"
       updated: "%{model}を更新しました。"
       destroyed: "%{model}を削除しました。"
+      logged_in: ログインしました。
+      logged_out: ログアウトしました。
+      login_failed: ログインできません。
 
   views:
     pagination:
