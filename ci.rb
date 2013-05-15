@@ -1,5 +1,6 @@
 require 'fileutils'
 def sh *args
+  puts args
   exit false unless system(*args)
 end
 

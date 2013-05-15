@@ -5,6 +5,7 @@ describe "posts/show" do
   let(:current_user){ FactoryGirl.create(:user) }
   let(:post){ FactoryGirl.create(:post) }
   before do
+    Rails.cache.clear
     controller.stub(current_user: current_user)
     view.stub(current_user: current_user)
     assign(:current_ability, Ability.new(current_user))

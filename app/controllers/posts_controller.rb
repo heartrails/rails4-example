@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   #   - q: Hash of search keys and values (optional)
   def index
     @q = Post.includes(:user, :comments).search(params[:q])
-    @posts = @q.result(:distinct => true)
+    @posts = @q.result
     respond_with @posts
   end
 
