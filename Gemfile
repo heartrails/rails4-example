@@ -51,12 +51,12 @@ gem "less-rails"
 gem "twitter-bootstrap-rails", github: 'seyhunak/twitter-bootstrap-rails'
 gem "jquery-ui-rails"
 gem "ransack", github: 'ernie/ransack', branch: "rails-4"
+gem "dalli"
 
 group :development do
   gem "i18n_generators", git: "git://github.com/amatsuda/i18n_generators.git"
   gem "better_errors"
   gem 'binding_of_caller'
-  gem 'meta_request'
   gem 'annotate'
 end
 
@@ -69,4 +69,8 @@ group :development, :test do
   gem 'ci_reporter'
   gem 'simplecov'
   gem 'simplecov-rcov'
+end
+
+group :test do
+  gem 'test_after_commit'  # to test after_commit
 end

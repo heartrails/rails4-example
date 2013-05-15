@@ -96,4 +96,6 @@ Example::Application.configure do
         :exception_recipients => ENV['EXCEPTION_MAIL_TO'].split(',')
       }
   end
+
+  config.cache_store = :dalli_store, 'localhost:11211'
 end

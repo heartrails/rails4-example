@@ -17,4 +17,9 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
   validates :post, presence: true
   validates :body, presence: true, length: 1..140
+
+  after_commit do
+    post.try(:flush_cache)
+    true
+  end
 end
