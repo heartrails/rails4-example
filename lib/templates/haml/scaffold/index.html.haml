@@ -5,7 +5,7 @@
 %table.table
   %tr
 <% for attribute in attributes -%>
-    %th <%= attribute.human_name %>
+    %th= model_class.human_attribute_name(:<%= attribute.name %>)
 <% end -%>
     %th=t '.actions', :default => t("helpers.actions")
 
