@@ -48,7 +48,7 @@ gem 'faker'
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
 gem 'therubyracer'
 gem "less-rails"
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", github: 'seyhunak/twitter-bootstrap-rails'
 gem "jquery-ui-rails"
 gem "ransack", github: 'ernie/ransack', branch: "rails-4"
 
