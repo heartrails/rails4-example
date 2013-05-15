@@ -8,6 +8,7 @@ ja:
       edit: 編集
       destroy: "削除"
       new: "新規"
+      sending: 送信中...
     titles:
       edit: "%{model}の編集"
       index: "%{model}の一覧"
