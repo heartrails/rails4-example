@@ -69,6 +69,9 @@ group :development, :test do
   gem 'ci_reporter'
   gem 'simplecov'
   gem 'simplecov-rcov'
+  gem 'spork-rails', github: 'railstutorial/spork-rails'
+  gem 'guard-spork'
+  gem 'guard-rspec'
 end
 
 group :test do
