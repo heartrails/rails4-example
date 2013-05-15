@@ -3,7 +3,7 @@
   %h1= @user.username
 
 .form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn'
+  = link_to_back t('.back', :default => t("helpers.links.back")), :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(@user), :class => 'btn' if can? :update, @user
   = link_to t('.destroy', :default => t("helpers.links.destroy")), user_path(@user), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' if can? :destroy, @user
 

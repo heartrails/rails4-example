@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   before_action :log_user_info
+  before_action :set_location_to_back
 
   # returns current +User+ if logged in
   # * *Returns* :
@@ -20,5 +21,10 @@ class ApplicationController < ActionController::Base
 
   def log_user_info
     logger.info "  user_id: #{session[:user_id]}, request_ip: #{request.ip}, session_id: #{session.id}" if session[:user_id]
+  end
+
+  def set_location_to_back
+    session[:location_to_back] = session[:last_location]
+    session[:last_location] = request.fullpath if %w(index show).include?(action_name)
   end
 end
