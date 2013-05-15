@@ -4,7 +4,7 @@
 
 %dl
 <% for attribute in attributes -%>
-  %dt <%= attribute.human_name %>
+  %dt= model_class.human_attribute_name(:<%= attribute.name %>)
   %dd= @<%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
 

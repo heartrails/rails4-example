@@ -3,7 +3,7 @@
   %h1=t '.title', :default => model_class.model_name.human
 
 %dl
-  %dt Username
+  %dt= model_class.human_attribute_name(:username)
   %dd= @user.username
 
 .form-actions

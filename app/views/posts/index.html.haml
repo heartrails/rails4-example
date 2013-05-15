@@ -7,10 +7,10 @@
 = paginate posts
 %table.table
   %tr
-    %th= User
+    %th= User.human_attribute_name(:username)
     %th= sort_link @q, :created_at, "投稿日時"
-    %th 本文
-    %th Url
+    %th= Post.human_attribute_name(:text)
+    %th= Post.human_attribute_name(:url)
     %th= sort_link @q, :comments_count, 'コメント数'
     %th=t '.actions', :default => t("helpers.actions")
 
