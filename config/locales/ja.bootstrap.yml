@@ -1,0 +1,35 @@
+ja:
+  helpers:
+    actions: "アクション"
+    links:
+      back: "戻る"
+      cancel: "キャンセル"
+      confirm: "よろしいですか？"
+      edit: 編集
+      destroy: "削除"
+      new: "新規"
+    titles:
+      edit: "%{model}の編集"
+      index: "%{model}の一覧"
+      save: "保存"
+      new: "新規%{model}"
+      delete: "削除"
+    notices:
+      created: "%{model}を作成しました。"
+      updated: "%{model}を更新しました。"
+      destroyed: "%{model}を削除しました。"
+
+  views:
+    pagination:
+      first: "<<"
+      last: ">>"
+      previous: "<"
+      next: ">"
+      truncate: "..."
+
+  simple_form:
+    error_notification:
+      default_message: 修正が必要な項目があります。
+
+  ransack:
+    search: 検索する

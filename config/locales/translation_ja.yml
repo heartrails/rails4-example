@@ -12,26 +12,14 @@ ja:
         user: :activerecord.models.user  #g
 
       post:
+        created_at: 投稿日
         comments: コメント  #g
+        comments_count: コメント数
         text: 本文  #g
         url: URL  #g
         user: :activerecord.models.user  #g
 
       user:
-        password_digest:
-        salt:
+        password: パスワード
+        password_confirmation: パスワード (確認)
         username: ユーザー名  #g
-
-  helpers:
-    notices:
-      created: "%{model}を作成しました。"
-      updated: "%{model}を更新しました。"
-      destroyed: "%{model}を削除しました。"
-
-  views:
-    pagination:
-      first: "<<"
-      last: ">>"
-      previous: "<"
-      next: ">"
-      truncate: "..."

@@ -24,6 +24,16 @@ GIT
     cancan (2.0.0.alpha)
 
 GIT
+  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: 3ac1736365a14253b34b4798ee2dc0215896be9a
+  specs:
+    twitter-bootstrap-rails (2.2.6)
+      actionpack (>= 3.1)
+      execjs
+      rails (>= 3.1)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/smartinez87/exception_notification.git
   revision: 11d61df3cb435381929757b8d7e47209b5ab2b14
   specs:
@@ -220,10 +230,6 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (1.1.1)
       coffee-rails
-    twitter-bootstrap-rails (2.2.6)
-      actionpack (>= 3.1)
-      execjs
-      railties (>= 3.1)
     tzinfo (0.3.37)
     uglifier (2.0.1)
       execjs (>= 0.3.0)
@@ -272,6 +278,6 @@ DEPENDENCIES
   test_after_commit
   therubyracer
   turbolinks
-  twitter-bootstrap-rails
+  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   webrat
