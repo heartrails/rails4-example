@@ -3,12 +3,12 @@
   %h1=t '.title', :default => model_class.model_name.human
 
 %dl
-  %dt User
-  %dd= @post.user.username
-  %dt Text
+  %dt= User.human_attribute_name(:username)
+  %dd= link_to_user @post.user
+  %dt= model_class.human_attribute_name(:text)
   %dd= @post.text
-  %dt Url
-  %dd= @post.url
+  %dt= model_class.human_attribute_name(:url)
+  %dd= link_to @post.url, @post.url
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn'
