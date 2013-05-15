@@ -28,7 +28,7 @@ describe CommentsController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # CommentsController. Be sure to keep this updated too.
-  let(:valid_session) { { user_id: @comment.user.to_param } }
+  let(:valid_session) { { user_id: @comment.user_id } }
 
   before do
     @comment = FactoryGirl.create(:comment)
@@ -117,14 +117,28 @@ describe CommentsController do
   end
 
   describe "DELETE destroy" do
-    subject(:action){ delete :destroy, {id: @comment.to_param}, valid_session }
-    it "destroys the requested comment" do
-      expect{subject}.to change(Comment, :count).by(-1)
-    end
+    subject(:action){ delete :destroy, {id: @comment.to_param}, session }
+    context "my comment" do
+      let(:session){ valid_session }
+      it "destroys the requested comment" do
+        expect{subject}.to change(Comment, :count).by(-1)
+      end
 
-    it "redirects to the parent post" do
-      expect(subject).to redirect_to(post_url(@post.to_param))
+      it "redirects to the parent post" do
+        expect(subject).to redirect_to(post_url(@post.to_param))
+      end
+    end
+    context "another's comment on my post" do
+      let(:session){ {user_id: @post.user_id} }
+      it "destroys the requested comment" do
+        expect{subject}.to change(Comment, :count).by(-1)
+      end
+    end
+    context "another's comment on another's post" do
+      let(:session){ {user_id: FactoryGirl.create(:user).id} }
+      it "fail to destroy the requested comment" do
+        expect{subject}.to raise_error CanCan::Unauthorized
+      end
     end
   end
-
 end

@@ -18,4 +18,9 @@
 %h2 コメント
 %ul
   = render @post.cached_comments
-= link_to t('.new', :default => t("helpers.links.new")), new_post_comment_path(@post), :class => 'btn btn-primary'
+
+.form-actions
+  - if can? :create, :comments
+    = link_to t('.new', :default => t("helpers.links.new")), new_post_comment_path(@post), :class => 'btn btn-primary'
+  - else
+    コメントするには#{link_to "ログイン", new_sessions_path}が必要です。

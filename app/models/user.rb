@@ -15,5 +15,12 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true, length: 3..12, format: /\A[a-z0-9_.]+\z/
-  validates :password, length: { minimum: 6 }, unless: ->{ password_digest.present? }
+  validates :password, length: { minimum: 6 }, allow_blank: true
+
+  # https://github.com/rails/rails/commit/8c1687bbf8dd518d64fc7180b33c1cb57f29a69a
+  def password_confirmation=(unencrypted_password)
+    unless unencrypted_password.blank?
+      @password_confirmation = unencrypted_password
+    end
+  end
 end

@@ -97,5 +97,5 @@ Example::Application.configure do
       }
   end
 
-  config.cache_store = :dalli_store, 'localhost:11211'
+  config.cache_store = :dalli_store
 end

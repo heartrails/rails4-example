@@ -58,12 +58,12 @@ group :development do
   gem "better_errors"
   gem 'binding_of_caller'
   gem 'annotate'
+  gem "pry-rails"
 end
 
 group :development, :test do
   gem "rspec-rails"
   gem "webrat"
-  gem "pry-rails"
   gem 'spring'
   gem 'sqlite3'
   gem 'ci_reporter'
