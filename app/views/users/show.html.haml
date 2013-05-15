@@ -1,12 +1,19 @@
 - model_class = User
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human
-
-%dl
-  %dt= model_class.human_attribute_name(:username)
-  %dd= @user.username
+  %h1= @user.username
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(@user), :class => 'btn' if can? :update, @user
   = link_to t('.destroy', :default => t("helpers.links.destroy")), user_path(@user), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' if can? :destroy, @user
+
+%h2 最近の投稿
+%table.table
+  %tr
+    %th= Post.human_attribute_name(:created_at)
+    %th= Post.human_attribute_name(:text)
+    %th= Post.human_attribute_name(:url)
+    %th= Post.human_attribute_name(:comments_count)
+    %th=t '.actions', :default => t("helpers.actions")
+
+  = render @user.posts.order("created_at DESC").first(10), with_user: false

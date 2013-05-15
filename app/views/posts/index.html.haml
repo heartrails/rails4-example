@@ -14,14 +14,5 @@
     %th= sort_link @q, :comments_count, 'コメント数'
     %th=t '.actions', :default => t("helpers.actions")
 
-  - posts.each do |post|
-    %tr
-      %td= link_to_user(post.user)
-      %td= link_to l(post.created_at), post
-      %td= post.text
-      %td= link_to post.url,post.url
-      %td= post.comments_count
-      %td
-        = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(post), :class => 'btn btn-mini' if can? :edit, post
-        = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' if can? :destroy, post
+  = render posts
 = paginate posts

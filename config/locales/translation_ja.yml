@@ -12,7 +12,9 @@ ja:
         user: :activerecord.models.user  #g
 
       post:
+        created_at: 投稿日
         comments: コメント  #g
+        comments_count: コメント数
         text: 本文  #g
         url: URL  #g
         user: :activerecord.models.user  #g
