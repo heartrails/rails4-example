@@ -20,11 +20,11 @@ class SessionsController < ApplicationController
       if user && user.authenticate(user_params[:password])
         reset_session
         session[:user_id] = user.id
-        format.html { redirect_to root_url, :notice => "Logged in" }
+        format.html { redirect_to root_url, :notice => I18n.t("helpers.notices.logged_in") }
         format.js   { head :ok }
       else
         format.html {
-          flash.now[:alert] = "ログインできません。"
+          flash.now[:alert] = I18n.t("helpers.notices.login_failed")
           @user = User.new(user_params.permit(:username))
           render "new"
         }
@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     respond_to do |format|
-      format.html { redirect_to root_url, :notice => "Logged out" }
+      format.html { redirect_to root_url, :notice => I18n.t("helpers.notices.logged_out") }
       format.js   { head :ok }
     end
   end

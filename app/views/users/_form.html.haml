@@ -3,10 +3,9 @@
 
   .form-inputs
     = f.input :username
-    - if f.object.new_record?
-      = f.input :password
-      = f.input :password_confirmation
+    = f.input :password, required: f.object.new_record?
+    = f.input :password_confirmation
 
   .form-actions
-    = f.button :submit, class: "btn btn-primary"
+    = f.button :submit, class: "btn btn-primary", data: { disable_with: I18n.t("helpers.links.sending") }
     = link_to_back t('.cancel', :default => t("helpers.links.cancel")), :class => 'btn'

@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
 
   validates :user, presence: true
   validates :text, presence: true, length: 1..300
-  validates :url, url_format: true
+  validates :url, url_format: true, allow_blank: true
 
   # memcache key (without timestamp)
   def cache_key

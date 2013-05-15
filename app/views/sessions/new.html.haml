@@ -2,5 +2,5 @@
   = f.input :username
   = f.input :password
   .form-actions
-    = f.button :submit, "ログイン", :class => 'btn btn-primary'
+    = f.button :submit, "ログイン", :class => 'btn btn-primary', data: { disable_with: I18n.t("helpers.links.sending") }
     = link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
