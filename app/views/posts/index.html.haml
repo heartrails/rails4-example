@@ -8,10 +8,10 @@
 %table.table
   %tr
     %th= User.human_attribute_name(:username)
-    %th= sort_link @q, :created_at, "投稿日時"
+    %th= sort_link @q, :created_at, "投稿日時", default_order: :desc
     %th= Post.human_attribute_name(:text)
     %th= Post.human_attribute_name(:url)
-    %th= sort_link @q, :comments_count, 'コメント数'
+    %th= sort_link @q, :comments_count, 'コメント数', default_order: :desc
     %th=t '.actions', :default => t("helpers.actions")
 
   = render posts
