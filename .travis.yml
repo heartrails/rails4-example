@@ -12,4 +12,4 @@ branches:
   - master
 script: ruby ci.rb travis
 after_success:
-- sh ruby ci.rb travis_deploy
+- ruby ci.rb travis_deploy
