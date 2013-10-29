@@ -178,6 +178,7 @@ GEM
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
+    memcachier (0.0.2)
     method_source (0.8.1)
     mime-types (1.23)
     minitest (4.7.4)
@@ -304,6 +305,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   less-rails
+  memcachier
   pg
   pry-rails
   rails (= 4.0.0.rc1)
