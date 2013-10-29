@@ -51,7 +51,8 @@ gem "less-rails"
 gem "twitter-bootstrap-rails", github: 'seyhunak/twitter-bootstrap-rails'
 gem "jquery-ui-rails"
 gem "ransack", github: 'ernie/ransack', branch: "rails-4"
-gem "dalli"
+gem 'memcachier'
+gem 'dalli'
 
 group :development do
   gem "i18n_generators", git: "git://github.com/amatsuda/i18n_generators.git"
