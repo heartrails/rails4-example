@@ -34,6 +34,8 @@ ja:
   simple_form:
     error_notification:
       default_message: 修正が必要な項目があります。
+    required:
+      text: 必須
 
   ransack:
     search: 検索する
