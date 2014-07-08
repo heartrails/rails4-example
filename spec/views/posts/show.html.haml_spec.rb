@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "posts/show" do
   subject { render; response.body }
@@ -6,8 +6,8 @@ describe "posts/show" do
   let(:post){ FactoryGirl.create(:post) }
   before do
     Rails.cache.clear
-    controller.stub(current_user: current_user)
-    view.stub(current_user: current_user)
+    allow(controller).to receive(:current_user).and_return(current_user)
+    allow(view).to receive(:current_user).and_return(current_user)
     assign(:current_ability, Ability.new(current_user))
 
     assign(:post, post)
@@ -17,7 +17,7 @@ describe "posts/show" do
 
   context "owned by login user" do
     let(:post){ FactoryGirl.create(:post, user: current_user) }
-    it { should have_selector :a, href: edit_post_path(post) }
+    it { should have_xpath "//a[@href='#{edit_post_path(post)}']" }
   end
 
   context "owned by another user" do

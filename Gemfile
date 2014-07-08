@@ -65,7 +65,7 @@ end
 
 group :development, :test do
   gem "rspec-rails"
-  gem "webrat"
+  gem "capybara"
   gem 'spring'
   gem 'sqlite3'
   gem 'ci_reporter'

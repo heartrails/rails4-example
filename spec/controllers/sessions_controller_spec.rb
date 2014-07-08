@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SessionsController do
   let(:valid_attributes){ FactoryGirl.attributes_for(:user) }
@@ -21,7 +21,7 @@ describe SessionsController do
         expect(subject).to redirect_to(root_url)
       end
       it "resets session" do
-        ActionDispatch::Request.any_instance.should_receive(:reset_session).once
+        expect_any_instance_of(ActionDispatch::Request).to receive(:reset_session).once
         subject
       end
     end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   subject(:user){ FactoryGirl.create(:user) }
@@ -6,7 +6,7 @@ describe User do
     context "on create" do
       it "fail if length is 5" do
         user = FactoryGirl.build(:user, password: "hogeh")
-        expect(user.save).to be_false
+        expect(user.save).to eq false
         expect(user.errors[:password]).not_to be_nil
       end
     end
@@ -21,16 +21,16 @@ describe User do
       end
       it "success with valid password and confirmation" do
         user.assign_attributes(password: "hogeho", password_confirmation: "hogeho")
-        expect(user.save).to be_true
+        expect(user.save).to eq true
       end
       it "fail if confirmation is invalid" do
         user.assign_attributes(password: "hogeho", password_confirmation: "")
-        expect(user.save).to be_false
+        expect(user.save).to eq false
         expect(user.errors[:password]).not_to be_nil
       end
       it "fail if length is 5" do
         user.assign_attributes(password: "hogeh", password_confirmation: "hogeh")
-        expect(user.save).to be_false
+        expect(user.save).to eq false
         expect(user.errors[:password]).not_to be_nil
       end
     end

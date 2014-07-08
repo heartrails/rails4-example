@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "<%= file_name %>/<%= @action %>.html.<%= options[:template_engine] %>" do
   before do

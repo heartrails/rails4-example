@@ -31,7 +31,7 @@ class Post < ActiveRecord::Base
   # returns the cached comments if comments are cached,
   # otherwise gets comments from DB and caches and returns them
   def cached_comments
-    Rails.cache.fetch([self, 'comments']) { comments.to_a }
+      Rails.cache.fetch([self, 'comments']) { comments.to_a }
   end
 
   # clear all cache belongs to self

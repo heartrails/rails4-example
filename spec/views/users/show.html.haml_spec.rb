@@ -1,11 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "users/show" do
   subject { render; response.body }
   let(:current_user){ FactoryGirl.create(:user) }
   before do
-    controller.stub(current_user: current_user)
-    view.stub(current_user: current_user)
+    allow(controller).to receive(:current_user).and_return(current_user)
+    allow(view).to receive(:current_user).and_return(current_user)
     assign(:current_ability, Ability.new(current_user))
 
     assign(:user, user)
@@ -13,8 +13,8 @@ describe "users/show" do
 
   context "login user" do
     let(:user){ current_user }
-    it { expect(view.can?(:update, user)).to be_true }
-    it { should have_selector :a, href: edit_user_path(user) }
+    it { expect(view.can?(:update, user)).to eq true }
+    it { should have_xpath "//a[@href='#{edit_user_path(user)}']" }
   end
 
   context "another user" do

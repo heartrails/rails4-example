@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Post do
   subject(:post){ FactoryGirl.create(:post) }
@@ -19,7 +19,7 @@ describe Post do
     end
     context 'before caching' do
       it 'gets comments from DB' do
-        @post.should_receive(:comments).once
+        expect(@post).to receive(:comments).once
         @post.cached_comments
       end
       it 'stores comments into cache' do
@@ -34,7 +34,7 @@ describe Post do
         @post = Post.find(@post.id)
       end
       it 'gets comments from cache' do
-        @post.should_receive(:comments).never
+        expect(@post).to receive(:comments).never
         @post.cached_comments
       end
       it 'returns correct comments' do
