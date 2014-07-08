@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby "2.1.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '~> 4'
 
 gem 'pg'
 
@@ -39,7 +39,7 @@ gem 'bcrypt-ruby'
 # gem 'debugger'
 
 gem 'activerecord-session_store'
-gem "exception_notification", github: "smartinez87/exception_notification"
+gem "exception_notification"
 gem "haml-rails"
 gem "simple_form"
 gem "kaminari"
@@ -48,9 +48,10 @@ gem 'faker'
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
 gem 'therubyracer'
 gem "less-rails"
-gem "twitter-bootstrap-rails", github: 'seyhunak/twitter-bootstrap-rails'
+gem "twitter-bootstrap-rails"
+gem 'font-awesome-less'
 gem "jquery-ui-rails"
-gem "ransack", github: 'ernie/ransack', branch: "rails-4"
+gem "ransack"
 gem 'memcachier'
 gem 'dalli'
 
@@ -70,8 +71,6 @@ group :development, :test do
   gem 'ci_reporter'
   gem 'simplecov'
   gem 'simplecov-rcov'
-  gem 'spork-rails', github: 'railstutorial/spork-rails'
-  gem 'guard-spork'
   gem 'guard-rspec'
 end
 
