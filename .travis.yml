@@ -6,7 +6,7 @@ env:
       sjOmcuiPXAd+/adyAjK4boajl1QUxfdf5cDD5ArvHR7zf0MpkIp02oIe7Vvx
       Dy7k3gFO/1g5g8kCOQF63N9vA6jvNLcojnK4p4vKm0mf2sAGH0g=
 rvm:
-- 2.0.0
+- 2.1.1
 branches:
   only:
   - master
