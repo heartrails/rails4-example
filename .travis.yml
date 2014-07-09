@@ -5,11 +5,19 @@ env:
       TjX3/vpdSIJYLxFn5jLavW9Hl+0z5S/P/5WBmaCb/w/NiF7gPUxnhGPSx8qx
       sjOmcuiPXAd+/adyAjK4boajl1QUxfdf5cDD5ArvHR7zf0MpkIp02oIe7Vvx
       Dy7k3gFO/1g5g8kCOQF63N9vA6jvNLcojnK4p4vKm0mf2sAGH0g=
+language: ruby
+cache: bundler
 rvm:
 - 2.1.1
 branches:
   only:
   - master
-script: ruby ci.rb travis
+addons:
+  postgresql: "9.3"
+services:
+  - memcached
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.travis.yml config/database.yml
 after_success:
 - ruby ci.rb travis_deploy
