@@ -69,7 +69,7 @@ group :development, :test do
   gem 'spring'
   gem 'sqlite3'
   gem 'ci_reporter'
-  gem 'rspec-legacy_formatters'
+  gem 'rspec-legacy_formatters', github: 'kuboon/rspec-legacy_formatters'
   gem 'simplecov'
   gem 'simplecov-rcov'
   gem 'guard-rspec'
