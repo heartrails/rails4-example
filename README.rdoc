@@ -1,5 +1,6 @@
 Rails4 のアプリケーションのごく簡単なサンプル
 ======
+https://heartrails-rails4-example.herokuapp.com/
 {<img src="https://travis-ci.org/heartrails/rails4-example.png?branch=master" alt="Build Status" />}[https://travis-ci.org/heartrails/rails4-example]
 
 機能
