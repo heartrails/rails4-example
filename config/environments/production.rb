@@ -89,7 +89,7 @@ Example::Application.configure do
   }
 
   if ENV['EXCEPTION_MAIL_TO']
-    config.middleware.use ExceptionNotifier,
+    config.middleware.use ExceptionNotification::Rack,
       :email => {
         :email_prefix => "[example] ",
         :sender_address => %{"notifier" <notifier@heartrails.com>},
