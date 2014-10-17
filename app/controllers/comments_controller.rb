@@ -8,6 +8,10 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :post
   load_and_authorize_resource
 
+  def error
+    raise
+  end
+
   # show the comment
   # * *routes*:
   #   - GET /comments/:id (.html)
