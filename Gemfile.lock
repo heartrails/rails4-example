@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/activerecord-hackery/ransack.git
+  remote: https://github.com/activerecord-hackery/ransack.git
   revision: d9f516f9185cf7eb7c9853a942493460e304857e
   branch: rails-4.2
   specs:
@@ -11,14 +11,14 @@ GIT
       polyamorous (~> 1.1)
 
 GIT
-  remote: git://github.com/amatsuda/i18n_generators.git
+  remote: https://github.com/amatsuda/i18n_generators.git
   revision: 043ffa4b56d4eb9f2dbf914605cc2ec370305b62
   specs:
     i18n_generators (2.1.1)
       rails (>= 3.0.0)
 
 GIT
-  remote: git://github.com/ryanb/cancan.git
+  remote: https://github.com/ryanb/cancan.git
   revision: e6bf4c8d12dca316eb4f0923ca30b6d3dfedb7ae
   branch: 2.0
   specs:
