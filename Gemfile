@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.0'
 
-gem 'pg'
+gem 'pg', '~> 0.20.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,7 +17,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails', '~> 3.1.0'
+gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 2.2.0'
@@ -47,9 +47,9 @@ gem 'faker'
 gem "cancan", github: "ryanb/cancan", branch: "2.0"
 gem 'therubyracer'
 gem "less-rails", '~> 3.0.0'
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", '~> 2.2.0'
 gem 'font-awesome-less', '~> 4.5.0'
-gem "jquery-ui-rails", '~> 5.0.0'
+gem "jquery-ui-rails"
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'memcachier'
 gem 'dalli'
