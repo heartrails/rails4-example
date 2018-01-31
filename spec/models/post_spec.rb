@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe Post do
-  subject(:post){ FactoryGirl.create(:post) }
+  subject(:post){ FactoryBot.create(:post) }
   describe "destroy" do
     it "also destroys comments" do
-      comments = FactoryGirl.create_list(:comment, 2, post: post)
+      comments = FactoryBot.create_list(:comment, 2, post: post)
       post.destroy
       expect{comments[0].reload}.to raise_error ActiveRecord::RecordNotFound
       expect{comments[1].reload}.to raise_error ActiveRecord::RecordNotFound
@@ -13,9 +13,9 @@ describe Post do
 
   describe '#cached_comments' do
     before do
-      @post = FactoryGirl.create(:post)
+      @post = FactoryBot.create(:post)
       @post.flush_cache
-      @comments = FactoryGirl.create_list(:comment, 2, post: @post).sort_by(&:id)
+      @comments = FactoryBot.create_list(:comment, 2, post: @post).sort_by(&:id)
     end
     context 'before caching' do
       it 'gets comments from DB' do
@@ -47,7 +47,7 @@ describe Post do
         expect(Rails.cache.read([@post, 'comments'])).to be_present
       end
       it 'clears cache when another comment are added' do
-        FactoryGirl.create(:comment, post: @post)
+        FactoryBot.create(:comment, post: @post)
         expect(Rails.cache.read([@post, 'comments'])).to be_blank
       end
       it 'clears cache when one of the comments is destoryed' do

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe SessionsController do
-  let(:valid_attributes){ FactoryGirl.attributes_for(:user) }
+  let(:valid_attributes){ FactoryBot.attributes_for(:user) }
   before do
     @user = User.create!(valid_attributes)
   end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "users/edit" do
   before(:each) do
-    @user = assign(:user, FactoryGirl.create(:user))
+    @user = assign(:user, FactoryBot.create(:user))
   end
 
   it "renders the edit user form" do

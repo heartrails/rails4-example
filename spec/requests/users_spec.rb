@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Users" do
   before do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
   end
   describe "GET /users" do
     it "works! (now write some real specs)" do

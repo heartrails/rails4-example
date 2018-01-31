@@ -42,7 +42,7 @@ gem "exception_notification"
 gem "haml-rails"
 gem "simple_form", '~> 3.5.0'
 gem "kaminari"
-gem "factory_girl_rails"
+gem "factory_bot_rails"
 gem 'faker'
 gem "cancan", github: "ryanb/cancan", branch: "2.0"
 gem 'therubyracer'

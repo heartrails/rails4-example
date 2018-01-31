@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Comments" do
   before do
-    @post = FactoryGirl.create(:post)
+    @post = FactoryBot.create(:post)
   end
   describe "GET /posts/:post_id/comments/new" do
     it "works! (now write some real specs)" do
