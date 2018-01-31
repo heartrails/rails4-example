@@ -25,8 +25,8 @@ https://heartrails-rails4-example.herokuapp.com/
 
 動作環境
 ----
-- Ruby 2.1.1
-- Rails 4.1.4
+- Ruby 2.5.0
+- Rails 4.2.10
 - PostgreSQL 9.3
 - Memcached 1.5.4
 
