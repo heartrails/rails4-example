@@ -143,10 +143,10 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (1.0.2)
       activesupport (>= 3.0.0)
-    jquery-rails (3.1.1)
+    jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (5.0.0)
+    jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (2.1.0)
     kaminari (0.16.1)
@@ -322,8 +322,8 @@ DEPENDENCIES
   haml-rails
   i18n_generators!
   jbuilder (~> 1.0.1)
-  jquery-rails
-  jquery-ui-rails
+  jquery-rails (~> 3.1.0)
+  jquery-ui-rails (~> 5.0.0)
   kaminari
   less-rails (~> 2.7.0)
   memcachier

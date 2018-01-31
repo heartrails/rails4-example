@@ -17,7 +17,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 3.1.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 2.2.0'
@@ -49,7 +49,7 @@ gem 'therubyracer'
 gem "less-rails", '~> 2.7.0'
 gem "twitter-bootstrap-rails"
 gem 'font-awesome-less', '~> 4.5.0'
-gem "jquery-ui-rails"
+gem "jquery-ui-rails", '~> 5.0.0'
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'memcachier'
 gem 'dalli'
