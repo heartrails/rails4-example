@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4'
+gem 'rails', '~> 4.2.0'
 
 gem 'pg'
 
@@ -20,7 +20,7 @@ end
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.2.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
@@ -37,7 +37,7 @@ gem 'bcrypt-ruby'
 # To use debugger
 # gem 'debugger'
 
-gem 'activerecord-session_store'
+gem 'activerecord-session_store', '~> 1.0.0'
 gem "exception_notification"
 gem "haml-rails"
 gem "simple_form"
@@ -46,11 +46,11 @@ gem "factory_girl_rails"
 gem 'faker'
 gem "cancan", github: "ryanb/cancan", branch: "2.0"
 gem 'therubyracer'
-gem "less-rails"
+gem "less-rails", '~> 2.7.0'
 gem "twitter-bootstrap-rails"
-gem 'font-awesome-less'
+gem 'font-awesome-less', '~> 4.5.0'
 gem "jquery-ui-rails"
-gem "ransack"
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'memcachier'
 gem 'dalli'
 
@@ -60,6 +60,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'annotate'
   gem "pry-rails"
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
@@ -75,7 +76,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'test_after_commit'  # to test after_commit
+  gem 'test_after_commit', '~> 0.4.0'  # to test after_commit
 end
 
 gem 'rails_12factor', group: :production
+gem 'responders', '~> 2.0'
