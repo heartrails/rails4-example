@@ -34,5 +34,5 @@ Example::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  config.cache_store = :dalli_store, 'localhost:11211'
+  config.cache_store = :dalli_store, [ENV.fetch('MEMCACHED_HOST', 'localhost'), ENV.fetch('MEMCACHED_PORT', '11211')].join(':')
 end

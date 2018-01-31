@@ -1,0 +1,35 @@
+---
+version: '3.5'
+services:
+  db:
+    image: postgres:9.3-alpine # @see https://hub.docker.com/_/postgres/
+    volumes:
+      - ./tmp/postgresql:/var/lib/postgresql/data
+    ports:
+      - 15432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+  cache:
+    image: memcached:1.5.4-alpine # @see https://hub.docker.com/_/memcached/
+    ports:
+      - 11211
+
+  app:
+    build: .
+    command: >
+      bash -c "
+        rm -rf tmp/pids/server.pid &&
+        rails s -p 3000 -b '0.0.0.0'
+      "
+    depends_on:
+      - db
+      - cache
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_HOST: db
+      MEMCACHED_HOST: cache

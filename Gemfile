@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby "2.1.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4'
@@ -45,7 +44,7 @@ gem "simple_form"
 gem "kaminari"
 gem "factory_girl_rails"
 gem 'faker'
-gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
+gem "cancan", github: "ryanb/cancan", branch: "2.0"
 gem 'therubyracer'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
@@ -56,7 +55,7 @@ gem 'memcachier'
 gem 'dalli'
 
 group :development do
-  gem "i18n_generators", git: "git://github.com/amatsuda/i18n_generators.git"
+  gem "i18n_generators", github: "amatsuda/i18n_generators"
   gem "better_errors"
   gem 'binding_of_caller'
   gem 'annotate'
@@ -69,7 +68,7 @@ group :development, :test do
   gem 'spring'
   gem 'sqlite3'
   gem 'ci_reporter'
-  gem 'rspec-legacy_formatters', github: 'kuboon/rspec-legacy_formatters'
+  gem 'rspec-legacy_formatters'
   gem 'simplecov'
   gem 'simplecov-rcov'
   gem 'guard-rspec'

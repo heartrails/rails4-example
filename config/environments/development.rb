@@ -25,5 +25,5 @@ Example::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
 
-  config.cache_store = :dalli_store, 'localhost:11211'
+  config.cache_store = :dalli_store, [ENV.fetch('MEMCACHED_HOST', 'localhost'), ENV.fetch('MEMCACHED_PORT', '11211')].join(':')
 end
