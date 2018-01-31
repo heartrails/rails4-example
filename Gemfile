@@ -40,13 +40,13 @@ gem 'bcrypt-ruby'
 gem 'activerecord-session_store', '~> 1.0.0'
 gem "exception_notification"
 gem "haml-rails"
-gem "simple_form"
+gem "simple_form", '~> 3.5.0'
 gem "kaminari"
 gem "factory_girl_rails"
 gem 'faker'
 gem "cancan", github: "ryanb/cancan", branch: "2.0"
 gem 'therubyracer'
-gem "less-rails", '~> 2.7.0'
+gem "less-rails", '~> 3.0.0'
 gem "twitter-bootstrap-rails"
 gem 'font-awesome-less', '~> 4.5.0'
 gem "jquery-ui-rails", '~> 5.0.0'
@@ -64,15 +64,13 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails"
+  gem "rspec-rails", '~> 3.1.0'
   gem "capybara"
   gem 'spring'
   gem 'sqlite3'
   gem 'ci_reporter'
-  gem 'rspec-legacy_formatters'
   gem 'simplecov'
   gem 'simplecov-rcov'
-  gem 'guard-rspec'
 end
 
 group :test do

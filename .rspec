@@ -1,4 +1,3 @@
 --color
 #--warnings
 --require spec_helper
---require rspec/legacy_formatters
