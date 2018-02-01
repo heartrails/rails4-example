@@ -33,7 +33,7 @@ gem 'turbolinks', '~> 2.2.0'
 gem 'jbuilder', '~> 1.0.1'
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'
