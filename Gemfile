@@ -44,10 +44,10 @@ gem 'bcrypt'
 # To use debugger
 # gem 'debugger'
 
-gem 'activerecord-session_store', '~> 1.0.0'
+gem 'activerecord-session_store', '~> 1.1'
 gem "exception_notification"
 gem "haml-rails"
-gem "simple_form", '~> 3.5.0'
+gem "simple_form", '~> 3.5'
 gem "kaminari"
 gem "factory_bot_rails"
 gem 'faker'
@@ -57,12 +57,13 @@ gem "less-rails", '~> 3.0.0'
 gem "twitter-bootstrap-rails", '~> 2.2.0'
 gem 'font-awesome-less', '~> 4.5.0'
 gem "jquery-ui-rails"
-gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
+gem 'ransack'
 gem 'memcachier'
 gem 'dalli'
+gem 'responders', '~> 2.0'
 
 group :development do
-  gem "i18n_generators", github: "amatsuda/i18n_generators"
+  gem "i18n_generators", '~> 2.1'
   gem "better_errors"
   gem 'binding_of_caller'
   gem 'annotate'
@@ -71,7 +72,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", '~> 3.1.0'
+  gem "rspec-rails", '~> 3.7'
   gem "capybara"
   gem 'spring'
   gem 'sqlite3'
@@ -81,8 +82,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'test_after_commit', '~> 0.4.0'  # to test after_commit
+  gem 'test_after_commit' # to test after_commit
 end
 
 gem 'rails_12factor', group: :production
-gem 'responders', '~> 2.0'
