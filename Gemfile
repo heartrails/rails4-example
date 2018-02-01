@@ -15,12 +15,6 @@ gem 'pg', '~> 0.20.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  #gem 'sass-rails',   '~> 4.0.0.beta1'
-  #gem 'coffee-rails', '~> 4.0.0.beta1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', platforms: :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -45,37 +39,36 @@ gem 'bcrypt'
 # gem 'debugger'
 
 gem 'activerecord-session_store', '~> 1.1'
-gem "exception_notification"
-gem "haml-rails"
-gem "simple_form", '~> 3.5'
-gem "kaminari"
-gem "factory_bot_rails"
+gem 'exception_notification'
+gem 'haml-rails'
+gem 'simple_form', '~> 3.5'
+gem 'kaminari'
+gem 'factory_bot_rails'
 gem 'faker'
-gem "cancan", github: "ryanb/cancan", branch: "2.0"
+gem 'cancan', github: 'ryanb/cancan', branch: '2.0'
 gem 'therubyracer'
-gem "less-rails", '~> 3.0.0'
-gem "twitter-bootstrap-rails", '~> 2.2.0'
+gem 'less-rails', '~> 3.0.0'
+gem 'twitter-bootstrap-rails', '~> 2.2.0'
 gem 'font-awesome-less', '~> 4.5.0'
-gem "jquery-ui-rails"
+gem 'jquery-ui-rails'
 gem 'ransack'
 gem 'memcachier'
 gem 'dalli'
 gem 'responders', '~> 2.0'
 
 group :development do
-  gem "i18n_generators", '~> 2.1'
-  gem "better_errors"
+  gem 'i18n_generators', '~> 2.1'
+  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'annotate'
-  gem "pry-rails"
+  gem 'pry-rails'
   gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
-  gem "rspec-rails", '~> 3.7'
-  gem "capybara"
+  gem 'rspec-rails', '~> 3.7'
+  gem 'capybara'
   gem 'spring'
-  gem 'sqlite3'
   gem 'ci_reporter'
   gem 'simplecov'
   gem 'simplecov-rcov'
