@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.5.0'
 
 # `github` shorthand set to be use `https` protocol instead of `git` protocol.
 # @see https://github.com/rails/rails/commit/12d5c21031446686898d5bac924ff3e9e34b6a7d
