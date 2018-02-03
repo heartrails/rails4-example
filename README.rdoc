@@ -25,6 +25,24 @@ https://heartrails-rails4-example.herokuapp.com/
 
 動作環境
 ----
-- Ruby 2 系最新
-- Rails 4 系最新
-- PostgreSQL
+- Ruby 2.5.0
+- Rails 4.2.10
+- PostgreSQL 9.3
+- Memcached 1.5.4
+
+セットアップ
+----
+
+  $ cp config/database.yml.example config/database.yml
+  $ docker-compose run app rake db:setup
+
+起動
+----
+
+  $ docker-compose up
+  $ open localhost:3000
+
+テスト
+----
+
+  $ docker-compose exec app rspec

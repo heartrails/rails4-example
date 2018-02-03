@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "sessions/new.html.haml" do
   before do
-    assign(:user, FactoryGirl.build(:user))
+    assign(:user, FactoryBot.build(:user))
   end
   it do
     render

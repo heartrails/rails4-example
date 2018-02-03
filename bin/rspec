@@ -1,2 +1,4 @@
-#!/usr/bin/env bash
-exec $(dirname $0)/spring rspec "$@"
+#!/usr/bin/env ruby
+require_relative '../config/boot'
+require 'rake'
+load Gem.bin_path('rspec-core', 'rspec')

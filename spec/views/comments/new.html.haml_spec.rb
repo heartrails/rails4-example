@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe "comments/new" do
   before(:each) do
-    @post = assign(:post,    FactoryGirl.create(:post))
-    assign(:comment, FactoryGirl.build(:comment))
+    @post = assign(:post,    FactoryBot.create(:post))
+    assign(:comment, FactoryBot.build(:comment))
   end
 
   it "renders new comment form" do

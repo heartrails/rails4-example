@@ -13,7 +13,7 @@ Example::Application.configure do
   config.eager_load = false
 
   # Configure static asset server for tests with Cache-Control for performance.
-  config.serve_static_assets = true
+  config.serve_static_files = true
   config.static_cache_control = "public, max-age=3600"
 
   # Show full error reports and disable caching.
@@ -34,5 +34,5 @@ Example::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  config.cache_store = :dalli_store, 'localhost:11211'
+  config.cache_store = :dalli_store, [ENV.fetch('MEMCACHED_HOST', 'localhost'), ENV.fetch('MEMCACHED_PORT', '11211')].join(':')
 end

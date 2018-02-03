@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "users/new" do
   before(:each) do
-    assign(:user, FactoryGirl.build(:user))
+    assign(:user, FactoryBot.build(:user))
   end
 
   it "renders new user form" do

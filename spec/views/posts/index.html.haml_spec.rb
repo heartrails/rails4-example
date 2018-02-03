@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "posts/index" do
   before(:each) do
     @q = Post.search
-    @posts = assign(:posts, Kaminari.paginate_array(FactoryGirl.create_list(:post, 2)))
+    @posts = assign(:posts, Kaminari.paginate_array(FactoryBot.create_list(:post, 2)))
   end
 
   context "without login" do

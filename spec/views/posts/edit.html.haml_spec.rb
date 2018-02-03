@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "posts/edit" do
   before(:each) do
-    @post = assign(:post, FactoryGirl.create(:post))
+    @post = assign(:post, FactoryBot.create(:post))
   end
 
   it "renders the edit post form" do

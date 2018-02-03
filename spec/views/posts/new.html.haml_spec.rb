@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "posts/new" do
   before(:each) do
-    assign(:post, FactoryGirl.build(:post))
+    assign(:post, FactoryBot.build(:post))
   end
 
   it "renders new post form" do

@@ -23,7 +23,7 @@ describe CommentsController do
   # This should return the minimal set of attributes required to create a valid
   # Comment. As you add validations to Comment, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { FactoryGirl.attributes_for(:comment).slice(:body) }
+  let(:valid_attributes) { FactoryBot.attributes_for(:comment).slice(:body) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -31,7 +31,7 @@ describe CommentsController do
   let(:valid_session) { { user_id: @comment.user_id } }
 
   before do
-    @comment = FactoryGirl.create(:comment)
+    @comment = FactoryBot.create(:comment)
     @post = @comment.post
   end
 
@@ -135,7 +135,7 @@ describe CommentsController do
       end
     end
     context "another's comment on another's post" do
-      let(:session){ {user_id: FactoryGirl.create(:user).id} }
+      let(:session){ {user_id: FactoryBot.create(:user).id} }
       it "fail to destroy the requested comment" do
         expect{subject}.to raise_error CanCan::Unauthorized
       end

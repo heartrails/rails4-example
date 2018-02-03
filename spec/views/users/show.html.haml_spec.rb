@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "users/show" do
   subject { render; response.body }
-  let(:current_user){ FactoryGirl.create(:user) }
+  let(:current_user){ FactoryBot.create(:user) }
   before do
     allow(controller).to receive(:current_user).and_return(current_user)
     allow(view).to receive(:current_user).and_return(current_user)
@@ -18,7 +18,7 @@ describe "users/show" do
   end
 
   context "another user" do
-    let(:user){ FactoryGirl.create(:user) }
+    let(:user){ FactoryBot.create(:user) }
     it { should_not have_xpath "//a[contains(@href,'/edit')]" }
   end
 end

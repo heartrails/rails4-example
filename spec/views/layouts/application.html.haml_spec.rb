@@ -15,7 +15,7 @@ describe "layouts/application" do
   end
 
   context "with login" do
-    let(:user){ FactoryGirl.create(:user) }
+    let(:user){ FactoryBot.create(:user) }
     it { should_not have_xpath "//a[@href='#{new_sessions_path}']" }
     it { should have_xpath "//a[@href='#{sessions_path}']" }
     it { should have_xpath "//a[@href='#{new_post_path}']" }
