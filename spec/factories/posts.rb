@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :post do
     user
-    text { Faker::Lorem.sentence(10) }
+    text { Faker::Lorem.sentence[0..9] }
     url { Faker::Internet.url }
   end
 end

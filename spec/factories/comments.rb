@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :comment do
     user
     post
-    body { Faker::Lorem.sentence(5) }
+    body { Faker::Lorem.sentence[0..4] }
   end
 end
